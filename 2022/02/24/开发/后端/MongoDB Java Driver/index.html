@@ -1,0 +1,1020 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#4fcde3"><meta name="author" content="落花生"><meta name="copyright" content="落花生"><meta name="generator" content="Hexo 6.0.0"><meta name="theme" content="hexo-theme-yun"><title>MongoDB Java Driver | 唯落花生</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-okaidia.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#4fcde3"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"dbin.top","root":"/","title":["落","花","生","的","小","站"],"version":"1.6.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.json"},"fireworks":{"colors":["0, 0, 0","255, 255, 255","128, 128, 128","201, 4, 17"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><script src="//at.alicdn.com/t/font_2648851_os7f9jxepo.js" async></script><script src="/girlss/autoload.js" async></script><meta name="description" content="基本操作ConnectionString 表示一个连接字符串。连接字符串描述了要使用的主机和选项。 mongodb:&#x2F;&#x2F;[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][&#x2F;[database.collection][?options]]       参数详情           mongodb:&#x2F;&#x2F; : 是必">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB Java Driver">
+<meta property="og:url" content="https://dbin.top/2022/02/24/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/MongoDB%20Java%20Driver/index.html">
+<meta property="og:site_name" content="唯落花生">
+<meta property="og:description" content="基本操作ConnectionString 表示一个连接字符串。连接字符串描述了要使用的主机和选项。 mongodb:&#x2F;&#x2F;[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][&#x2F;[database.collection][?options]]       参数详情           mongodb:&#x2F;&#x2F; : 是必">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T01:19:04.000Z">
+<meta property="article:modified_time" content="2022-02-24T13:03:08.147Z">
+<meta property="article:author" content="落花生">
+<meta property="article:tag" content="NoSQL">
+<meta property="article:tag" content="MongoDB">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="落花生"><img width="96" loading="lazy" src="http://dbins.gitee.io/image/head/head.jpg" alt="落花生"><span class="site-author-status" title="开心每一天">🥰</span></a><div class="site-author-name"><a href="/about/">落花生</a></div><a class="site-name" href="/about/site.html">唯落花生</a><sub class="site-subtitle">improve oneself</sub><div class="site-desciption">花生有个长在枝头的理想吗？</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg></span><span class="site-state-item-count">44</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fenlei"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-biaoqian"></use></svg></span><span class="site-state-item-count">27</span></a></div><a class="site-state-item hty-icon-button" href="/others/index.html" title="others"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shezhi1"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wanmujun@aliyun.com" title="E-Mail" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-icon-test"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:beifen404@gmail.com" title="备用邮箱" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-youxiang4"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E6%A1%83%E5%AD%90" title="Twitter" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="frends" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-men-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">连接到数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E5%90%88"><span class="toc-number">1.2.</span> <span class="toc-text">创建集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%9B%86%E5%90%88"><span class="toc-number">1.3.</span> <span class="toc-text">使用集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E6%A1%A3"><span class="toc-number">1.4.</span> <span class="toc-text">创建文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%87%E6%A1%A3"><span class="toc-number">1.5.</span> <span class="toc-text">插入文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%96%87%E6%A1%A3"><span class="toc-number">1.6.</span> <span class="toc-text">查询文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%96%87%E6%A1%A3"><span class="toc-number">1.7.</span> <span class="toc-text">更新文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3"><span class="toc-number">1.8.</span> <span class="toc-text">删除文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%9B%86%E5%90%88"><span class="toc-number">1.9.</span> <span class="toc-text">删除集合</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://dbin.top/2022/02/24/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/MongoDB%20Java%20Driver/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="落花生"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="唯落花生"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">MongoDB Java Driver</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2022-02-24 09:19:04" itemprop="dateCreated datePublished" datetime="2022-02-24T09:19:04+08:00">2022-02-24</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">11m</span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2022/02/24/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/MongoDB%20Java%20Driver/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:#007EFF" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/" style="--text-color:#28d8f7" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/NoSQL/" style="--text-color:#FF1C99"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">NoSQL</span></a><a class="tag-item" href="/tags/MongoDB/" style="--text-color:#FF5DAE"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">MongoDB</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#4fcde3;"><h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p>ConnectionString</p>
+<p>表示一个连接字符串。连接字符串描述了要使用的主机和选项。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mongodb:<span class="token comment">//[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database.collection][?options]]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<details>
+    <summary><font color="blue">参数详情</font></summary>
+<ul>
+    <li>
+    <b><font color="white" style="background:#808080">mongodb://</font></b> : 是必需的前缀，以标识这是标准连接格式的字符串。
+    </li>
+    <li>
+    <b><font color="white" style="background:#808080">username:password@</font></b> : 用户名:密码:可选:@。如果给出，驱动程序将尝试登录到数据库服务器连接后的数据库。对于某些身份验证机制，只指定用户名而不指定密码，在这种情况下，用户名之后的“:”也会被删除
+        </li>
+    <li>
+    <b><font color="white" style="background:#808080">host1</font></b> : 是连接字符串中唯一必需的部分。它标识要连接的服务器地址。
+            </li>
+    <li>
+    <b><font color="white" style="background:#808080">:portX</font></b> : 是可选的，如果没有提供，默认为:27017。
+            </li>
+    <li>
+    <b><font color="white" style="background:#808080">/database</font></b> : /database是要登录的数据库名，因此只有在使用`username:password@`语法时才相关。如果不指定，默认使用“admin”数据库。
+            </li>
+    <li>
+    <b><font color="white" style="background:#808080">?options</font></b> : 连接选项。注意，如果数据库不在，在最后一个主机和`?`之间仍然需要 `/`。选项为“名称=值”对，用“&”分隔。为了向后兼容，";"可以作为除"&"之外的分隔符接受，但应视为已弃用。
+        </li>
+</ul>
+</details>
+
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mongodb<span class="token operator">+</span>srv:<span class="token comment">//[username:password@]host[/[database][?options]]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<details>
+<summary><font color="blue">参数详情</font></summary>
+<ul>
+    <li>
+        <b><font color="white" style="background:#808080">mongodb+srv://</font></b>是此格式所需的前缀。
+    </li>
+    <li>
+        <b><font color="white" style="background:#808080">username:password@</font></b>如果给出，驱动程序将尝试登录到数据库服务器连接后的数据库。对于某些身份验证机制，只指定用户名而不指定密码，在这种情况下，用户名之后的“:”也会被删除
+    </li>
+    <li>
+        <b><font color="white" style="background:#808080">host</font></b>是URI中唯一必需的部分。它标识一个主机名，在主机名前面加上“_mongodb._tcp”，然后从域名服务器查找SRV记录。每个SRV记录的主机/端口成为用来连接的种子列表，就像使用正常的mongodb协议在URI中提供的每个主机/端口对一样。
+    </li>
+    <li>
+        <b><font color="white" style="background:#808080">/database</font></b>/database是要登录的数据库名，因此只有在使用“用户名:密码@”语法时才相关。如果不指定，默认使用“admin”数据库。
+    </li>
+    <li>
+        <b><font color="white" style="background:#808080">?options</font></b>连接选项。注意，如果数据库不在，在最后一个主机和`?`之间仍然需要 `/`。选项为“名称=值”对，用“&”分隔。为了向后兼容，";"可以作为除"&"之外的分隔符接受，但应视为已弃用。
+    </li>
+</ul>
+</details>
+
+
+<h2 id="连接到数据库"><a href="#连接到数据库" class="headerlink" title="连接到数据库"></a>连接到数据库</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ConnectionString</span> connectionString <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConnectionString</span><span class="token punctuation">(</span><span class="token string">"....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">MongoClientSettings</span> settings <span class="token operator">=</span> 
+    	<span class="token comment">//返回'MongoClientSettings.Builder',一个MongoclientSettings的构建器，这样MongoclientSettings可以是不可变的，并且通过链接支持更简单的构造。</span>
+    	<span class="token class-name">MongoClientSettings</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    	<span class="token comment">//返回'MongoClientSettings.Builder',从给定的ConnectionString获取设置，并将它们应用到构建器</span>
+        <span class="token punctuation">.</span><span class="token function">applyConnectionString</span><span class="token punctuation">(</span>connectionString<span class="token punctuation">)</span>
+    	<span class="token comment">//返回'MongoClientSettings',构建一个MongoClientSettings实例。</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//为使用settings创建一个新连接</span>
+<span class="token class-name">MongoClient</span> mongoClient <span class="token operator">=</span> <span class="token class-name">MongoClients</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>settings<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取给定数据库名称的 Mongo 数据库实例。</span>
+<span class="token class-name">MongoDatabase</span> database <span class="token operator">=</span> mongoClient<span class="token punctuation">.</span><span class="token function">getDatabase</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<details>
+<summary>☟MongoClient的一些方法☟,  官方文档☞<a herf="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-sync/com/mongodb/client/MongoClient.html">♡♡♡</a>☚</summary>
+    <table><tr>
+<th class="colFirst" scope="col" _msthash="4258514" _msttexthash="20502521">修饰符和类型</th>
+<th class="colSecond" scope="col" _msthash="4258644" _msttexthash="5267275">方法</th>
+<th class="colLast" scope="col" _msthash="4258774" _msttexthash="6157333">描述</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#close()">close</a></span>()</code></th>
+<td class="colLast">
+<div class="block" _msthash="176111" _msttexthash="318034314">关闭客户端，这将关闭所有基础缓存资源，例如，包括套接字和后台监视线程。</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/connection/ClusterDescription.html?is-external=true" title="class or interface in com.mongodb.connection" class="externalLink">ClusterDescription</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getClusterDescription()">getClusterDescription</a></span>()</code></th>
+<td class="colLast">
+<div class="block" _msthash="176358" _msttexthash="34794968">获取当前群集说明。</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="MongoDatabase.html" title="interface in com.mongodb.client">MongoDatabase</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDatabase(java.lang.String)">getDatabase</a></span>&ZeroWidthSpace;(<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;databaseName)</code></th>
+<td class="colLast">
+<div class="block" _msthash="176605" _msttexthash="81775863">获取给定数据库名称的 <a href="MongoDatabase.html" title="interface in com.mongodb.client" _istranslated="1"><code _istranslated="1">Mongo 数据库</code></a>实例。</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="MongoIterable.html" title="interface in com.mongodb.client">MongoIterable</a>&lt;<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#listDatabaseNames()">listDatabaseNames</a></span>()</code></th>
+<td class="colLast">
+<div class="block" _msthash="176852" _msttexthash="34376212">获取数据库名称列表</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="MongoIterable.html" title="interface in com.mongodb.client">MongoIterable</a>&lt;<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#listDatabaseNames(com.mongodb.client.ClientSession)">listDatabaseNames</a></span>&ZeroWidthSpace;(<a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession)</code></th>
+<td class="colLast">
+<div class="block" _msthash="177099" _msttexthash="34376212">获取数据库名称列表</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="ListDatabasesIterable.html" title="interface in com.mongodb.client">ListDatabasesIterable</a>&lt;<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true" title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#listDatabases()">listDatabases</a></span>()</code></th>
+<td class="colLast">
+<div class="block" _msthash="177346" _msttexthash="29749941">获取数据库的列表</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="ListDatabasesIterable.html" title="interface in com.mongodb.client">ListDatabasesIterable</a>&lt;<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true" title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#listDatabases(com.mongodb.client.ClientSession)">listDatabases</a></span>&ZeroWidthSpace;(<a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession)</code></th>
+<td class="colLast">
+<div class="block" _msthash="177593" _msttexthash="29749941">获取数据库的列表</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ListDatabasesIterable.html" title="interface in com.mongodb.client">ListDatabasesIterable</a>&lt;TResult&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#listDatabases(com.mongodb.client.ClientSession,java.lang.Class)">listDatabases</a></span>&ZeroWidthSpace;(<a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+             <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true" title="class or interface in java.lang" class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+<td class="colLast">
+<div class="block" _msthash="177840" _msttexthash="29749941">获取数据库的列表</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ListDatabasesIterable.html" title="interface in com.mongodb.client">ListDatabasesIterable</a>&lt;TResult&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#listDatabases(java.lang.Class)">listDatabases</a></span>&ZeroWidthSpace;(<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true" title="class or interface in java.lang" class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+<td class="colLast">
+<div class="block" _msthash="178087" _msttexthash="29749941">获取数据库的列表</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#startSession()">startSession</a></span>()</code></th>
+<td class="colLast">
+<div class="block" _msthash="178334" _msttexthash="76420214">创建具有默认选项的客户端会话。</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#startSession(com.mongodb.ClientSessionOptions)">startSession</a></span>&ZeroWidthSpace;(<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ClientSessionOptions.html?is-external=true" title="class or interface in com.mongodb" class="externalLink">ClientSessionOptions</a>&nbsp;options)</code></th>
+<td class="colLast">
+<div class="block" _msthash="188838" _msttexthash="26401739">创建客户端会话。</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true" title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch()">watch</a></span>()</code></th>
+<td class="colLast">
+<div class="block" _msthash="189098" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true" title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch(com.mongodb.client.ClientSession)">watch</a></span>&ZeroWidthSpace;(<a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession)</code></th>
+<td class="colLast">
+<div class="block" _msthash="189358" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch(com.mongodb.client.ClientSession,java.lang.Class)">watch</a></span>&ZeroWidthSpace;(<a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+     <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true" title="class or interface in java.lang" class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+<td class="colLast">
+<div class="block" _msthash="189618" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code><a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true" title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch(com.mongodb.client.ClientSession,java.util.List)">watch</a></span>&ZeroWidthSpace;(<a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+     <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true" title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+<td class="colLast">
+<div class="block" _msthash="189878" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch(com.mongodb.client.ClientSession,java.util.List,java.lang.Class)">watch</a></span>&ZeroWidthSpace;(<a href="ClientSession.html" title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+     <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true" title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+     <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true" title="class or interface in java.lang" class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+<td class="colLast">
+<div class="block" _msthash="190138" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch(java.lang.Class)">watch</a></span>&ZeroWidthSpace;(<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true" title="class or interface in java.lang" class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+<td class="colLast">
+<div class="block" _msthash="190398" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code><a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true" title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch(java.util.List)">watch</a></span>&ZeroWidthSpace;(<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true" title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+<td class="colLast">
+<div class="block" _msthash="190658" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html" title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#watch(java.util.List,java.lang.Class)">watch</a></span>&ZeroWidthSpace;(<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true" title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+     <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true" title="class or interface in java.lang" class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+<td class="colLast">
+<div class="block" _msthash="190918" _msttexthash="40966562">为此客户端创建更改流。</div>
+</td>
+</tr>
+        </table>
+</details>
+
+
+<details>
+<summary>☟MongoDatabase的一些方法☟,  官方文档☞<a herf="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-sync/com/mongodb/client/MongoDatabase.html">♡♡♡</a>☚</summary>
+<table>
+    <tbody>
+        <tr>
+            <th class="colFirst" scope="col" _msthash="4258514" _msttexthash="20502521">修饰符和类型</th>
+            <th class="colSecond" scope="col" _msthash="4258644" _msttexthash="5267275">方法</th>
+            <th class="colLast" scope="col" _msthash="4258774" _msttexthash="6157333">描述</th>
+        </tr>
+        <tr id="i0" class="altColor">
+            <td class="colFirst"><code><a href="AggregateIterable.html"
+                        title="interface in com.mongodb.client">AggregateIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#aggregate(com.mongodb.client.ClientSession,java.util.List)">aggregate</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+            <td class="colLast">
+                <div class="block">
+                    <font _mstmutation="1" _msthash="176111" _msttexthash="300271686">在数据库上运行聚合框架管道，用于不需要基础集合的管道阶段，例如 和
+                        。</font><code>$currentOp</code><code>$listLocalSessions</code>
+                </div>
+            </td>
+        </tr>
+        <tr id="i1" class="rowColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="AggregateIterable.html"
+                        title="interface in com.mongodb.client">AggregateIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#aggregate(com.mongodb.client.ClientSession,java.util.List,java.lang.Class)">aggregate</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block">
+                    <font _mstmutation="1" _msthash="176358" _msttexthash="300271686">在数据库上运行聚合框架管道，用于不需要基础集合的管道阶段，例如 和
+                        。</font><code>$currentOp</code><code>$listLocalSessions</code>
+                </div>
+            </td>
+        </tr>
+        <tr id="i2" class="altColor">
+            <td class="colFirst"><code><a href="AggregateIterable.html"
+                        title="interface in com.mongodb.client">AggregateIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#aggregate(java.util.List)">aggregate</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+            <td class="colLast">
+                <div class="block">
+                    <font _mstmutation="1" _msthash="176605" _msttexthash="300271686">在数据库上运行聚合框架管道，用于不需要基础集合的管道阶段，例如 和
+                        。</font><code>$currentOp</code><code>$listLocalSessions</code>
+                </div>
+            </td>
+        </tr>
+        <tr id="i3" class="rowColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="AggregateIterable.html"
+                        title="interface in com.mongodb.client">AggregateIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#aggregate(java.util.List,java.lang.Class)">aggregate</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block">
+                    <font _mstmutation="1" _msthash="176852" _msttexthash="300271686">在数据库上运行聚合框架管道，用于不需要基础集合的管道阶段，例如 和
+                        。</font><code>$currentOp</code><code>$listLocalSessions</code>
+                </div>
+            </td>
+        </tr>
+        <tr id="i4" class="altColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createCollection(com.mongodb.client.ClientSession,java.lang.String)">createCollection</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">String</a>&nbsp;collectionName)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="177099" _msttexthash="59092644">使用给定名称创建一个新集合。</div>
+            </td>
+        </tr>
+        <tr id="i5" class="rowColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createCollection(com.mongodb.client.ClientSession,java.lang.String,com.mongodb.client.model.CreateCollectionOptions)">createCollection</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;collectionName,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/client/model/CreateCollectionOptions.html?is-external=true"
+                        title="class or interface in com.mongodb.client.model"
+                        class="externalLink">CreateCollectionOptions</a>&nbsp;createCollectionOptions)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="177346" _msttexthash="55427398">使用所选选项创建新收藏夹</div>
+            </td>
+        </tr>
+        <tr id="i6" class="altColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createCollection(java.lang.String)">createCollection</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">String</a>&nbsp;collectionName)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="177593" _msttexthash="59092644">使用给定名称创建一个新集合。</div>
+            </td>
+        </tr>
+        <tr id="i7" class="rowColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createCollection(java.lang.String,com.mongodb.client.model.CreateCollectionOptions)">createCollection</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;collectionName,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/client/model/CreateCollectionOptions.html?is-external=true"
+                        title="class or interface in com.mongodb.client.model"
+                        class="externalLink">CreateCollectionOptions</a>&nbsp;createCollectionOptions)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="177840" _msttexthash="55427398">使用所选选项创建新收藏夹</div>
+            </td>
+        </tr>
+        <tr id="i8" class="altColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createView(com.mongodb.client.ClientSession,java.lang.String,java.lang.String,java.util.List)">createView</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewName,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewOn,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="178087" _msttexthash="236789982">使用给定名称、支持集合/视图名称以及定义视图的聚合管道创建视图。</div>
+            </td>
+        </tr>
+        <tr id="i9" class="rowColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createView(com.mongodb.client.ClientSession,java.lang.String,java.lang.String,java.util.List,com.mongodb.client.model.CreateViewOptions)">createView</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewName,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewOn,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/client/model/CreateViewOptions.html?is-external=true"
+                        title="class or interface in com.mongodb.client.model"
+                        class="externalLink">CreateViewOptions</a>&nbsp;createViewOptions)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="178334" _msttexthash="269903569">使用给定名称、支持集合/视图名称、聚合管道和定义视图的选项创建视图。</div>
+            </td>
+        </tr>
+        <tr id="i10" class="altColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createView(java.lang.String,java.lang.String,java.util.List)">createView</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewName,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewOn,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="188838" _msttexthash="236789982">使用给定名称、支持集合/视图名称以及定义视图的聚合管道创建视图。</div>
+            </td>
+        </tr>
+        <tr id="i11" class="rowColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#createView(java.lang.String,java.lang.String,java.util.List,com.mongodb.client.model.CreateViewOptions)">createView</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewName,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;viewOn,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/client/model/CreateViewOptions.html?is-external=true"
+                        title="class or interface in com.mongodb.client.model"
+                        class="externalLink">CreateViewOptions</a>&nbsp;createViewOptions)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189098" _msttexthash="269903569">使用给定名称、支持集合/视图名称、聚合管道和定义视图的选项创建视图。</div>
+            </td>
+        </tr>
+        <tr id="i12" class="altColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#drop()">drop</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189358" _msttexthash="22003436">删除此数据库。</div>
+            </td>
+        </tr>
+        <tr id="i13" class="rowColor">
+            <td class="colFirst"><code>void</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#drop(com.mongodb.client.ClientSession)">drop</a></span>​(<a href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189618" _msttexthash="22003436">删除此数据库。</div>
+            </td>
+        </tr>
+        <tr id="i14" class="altColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/codecs/configuration/CodecRegistry.html?is-external=true"
+                        title="class or interface in org.bson.codecs.configuration"
+                        class="externalLink">CodecRegistry</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#getCodecRegistry()">getCodecRegistry</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189878" _msttexthash="87777456">获取 MongoDatabase 的编解码器注册表。</div>
+            </td>
+        </tr>
+        <tr id="i15" class="rowColor">
+            <td class="colFirst"><code><a href="MongoCollection.html"
+                        title="interface in com.mongodb.client">MongoCollection</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#getCollection(java.lang.String)">getCollection</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">String</a>&nbsp;collectionName)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190138" _msttexthash="14370473">获取集合。</div>
+            </td>
+        </tr>
+        <tr id="i16" class="altColor">
+            <td class="colFirst"><code>&lt;TDocument&gt;<br><a href="MongoCollection.html"
+                        title="interface in com.mongodb.client">MongoCollection</a>&lt;TDocument&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#getCollection(java.lang.String,java.lang.Class)">getCollection</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&nbsp;collectionName,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TDocument&gt;&nbsp;documentClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190398" _msttexthash="75647481">获取具有特定默认文档类的集合。</div>
+            </td>
+        </tr>
+        <tr id="i17" class="rowColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#getName()">getName</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190658" _msttexthash="31557201">获取数据库的名称。</div>
+            </td>
+        </tr>
+        <tr id="i18" class="altColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadConcern.html?is-external=true"
+                        title="class or interface in com.mongodb" class="externalLink">ReadConcern</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#getReadConcern()">getReadConcern</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190918" _msttexthash="62446124">获取 MongoDatabase 的读取关注点。</div>
+            </td>
+        </tr>
+        <tr id="i19" class="rowColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true"
+                        title="class or interface in com.mongodb" class="externalLink">ReadPreference</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#getReadPreference()">getReadPreference</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="191178" _msttexthash="75059309">获取 MongoDatabase 的读取首选项。</div>
+            </td>
+        </tr>
+        <tr id="i20" class="altColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/WriteConcern.html?is-external=true"
+                        title="class or interface in com.mongodb" class="externalLink">WriteConcern</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#getWriteConcern()">getWriteConcern</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189085" _msttexthash="57782270">获取 MongoDatabase 的写入关注点。</div>
+            </td>
+        </tr>
+        <tr id="i21" class="rowColor">
+            <td class="colFirst"><code><a href="MongoIterable.html"
+                        title="interface in com.mongodb.client">MongoIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#listCollectionNames()">listCollectionNames</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189345" _msttexthash="69081220">获取此数据库中所有集合的名称。</div>
+            </td>
+        </tr>
+        <tr id="i22" class="altColor">
+            <td class="colFirst"><code><a href="MongoIterable.html"
+                        title="interface in com.mongodb.client">MongoIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true"
+                        title="class or interface in java.lang" class="externalLink">String</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#listCollectionNames(com.mongodb.client.ClientSession)">listCollectionNames</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189605" _msttexthash="69081220">获取此数据库中所有集合的名称。</div>
+            </td>
+        </tr>
+        <tr id="i23" class="rowColor">
+            <td class="colFirst"><code><a href="ListCollectionsIterable.html"
+                        title="interface in com.mongodb.client">ListCollectionsIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#listCollections()">listCollections</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189865" _msttexthash="54946554">查找此数据库中的所有集合。</div>
+            </td>
+        </tr>
+        <tr id="i24" class="altColor">
+            <td class="colFirst"><code><a href="ListCollectionsIterable.html"
+                        title="interface in com.mongodb.client">ListCollectionsIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#listCollections(com.mongodb.client.ClientSession)">listCollections</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190125" _msttexthash="54946554">查找此数据库中的所有集合。</div>
+            </td>
+        </tr>
+        <tr id="i25" class="rowColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ListCollectionsIterable.html"
+                        title="interface in com.mongodb.client">ListCollectionsIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#listCollections(com.mongodb.client.ClientSession,java.lang.Class)">listCollections</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190385" _msttexthash="54946554">查找此数据库中的所有集合。</div>
+            </td>
+        </tr>
+        <tr id="i26" class="altColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ListCollectionsIterable.html"
+                        title="interface in com.mongodb.client">ListCollectionsIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#listCollections(java.lang.Class)">listCollections</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190645" _msttexthash="54946554">查找此数据库中的所有集合。</div>
+            </td>
+        </tr>
+        <tr id="i27" class="rowColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(com.mongodb.client.ClientSession,org.bson.conversions.Bson)">runCommand</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&nbsp;command)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190905" _msttexthash="286185055">在当前数据库的上下文中执行给定的命令，读取首选项为 <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true#primary()"
+                        title="class or interface in com.mongodb" class="externalLink" _istranslated="1"><code
+                            _istranslated="1">ReadPreference.primary（）</code></a>。</div>
+            </td>
+        </tr>
+        <tr id="i28" class="altColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(com.mongodb.client.ClientSession,org.bson.conversions.Bson,com.mongodb.ReadPreference)">runCommand</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&nbsp;command,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true"
+                        title="class or interface in com.mongodb"
+                        class="externalLink">ReadPreference</a>&nbsp;readPreference)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="191165" _msttexthash="202775131">使用给定的读取首选项在当前数据库的上下文中执行给定的命令。</div>
+            </td>
+        </tr>
+        <tr id="i29" class="rowColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;TResult</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(com.mongodb.client.ClientSession,org.bson.conversions.Bson,com.mongodb.ReadPreference,java.lang.Class)">runCommand</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&nbsp;command,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true"
+                        title="class or interface in com.mongodb"
+                        class="externalLink">ReadPreference</a>&nbsp;readPreference,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="191425" _msttexthash="202775131">使用给定的读取首选项在当前数据库的上下文中执行给定的命令。</div>
+            </td>
+        </tr>
+        <tr id="i30" class="altColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;TResult</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(com.mongodb.client.ClientSession,org.bson.conversions.Bson,java.lang.Class)">runCommand</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&nbsp;command,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189332" _msttexthash="286185055">在当前数据库的上下文中执行给定的命令，读取首选项为 <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true#primary()"
+                        title="class or interface in com.mongodb" class="externalLink" _istranslated="1"><code
+                            _istranslated="1">ReadPreference.primary（）</code></a>。</div>
+            </td>
+        </tr>
+        <tr id="i31" class="rowColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(org.bson.conversions.Bson)">runCommand</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&nbsp;command)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189592" _msttexthash="286185055">在当前数据库的上下文中执行给定的命令，读取首选项为 <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true#primary()"
+                        title="class or interface in com.mongodb" class="externalLink" _istranslated="1"><code
+                            _istranslated="1">ReadPreference.primary（）</code></a>。</div>
+            </td>
+        </tr>
+        <tr id="i32" class="altColor">
+            <td class="colFirst"><code><a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(org.bson.conversions.Bson,com.mongodb.ReadPreference)">runCommand</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&nbsp;command,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true"
+                        title="class or interface in com.mongodb"
+                        class="externalLink">ReadPreference</a>&nbsp;readPreference)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189852" _msttexthash="202775131">使用给定的读取首选项在当前数据库的上下文中执行给定的命令。</div>
+            </td>
+        </tr>
+        <tr id="i33" class="rowColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;TResult</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(org.bson.conversions.Bson,com.mongodb.ReadPreference,java.lang.Class)">runCommand</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&nbsp;command,
+                    <a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true"
+                        title="class or interface in com.mongodb"
+                        class="externalLink">ReadPreference</a>&nbsp;readPreference,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190112" _msttexthash="202775131">使用给定的读取首选项在当前数据库的上下文中执行给定的命令。</div>
+            </td>
+        </tr>
+        <tr id="i34" class="altColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;TResult</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#runCommand(org.bson.conversions.Bson,java.lang.Class)">runCommand</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions" class="externalLink">Bson</a>&nbsp;command,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190372" _msttexthash="286185055">在当前数据库的上下文中执行给定的命令，读取首选项为 <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true#primary()"
+                        title="class or interface in com.mongodb" class="externalLink" _istranslated="1"><code
+                            _istranslated="1">ReadPreference.primary（）</code></a>。</div>
+            </td>
+        </tr>
+        <tr id="i35" class="rowColor">
+            <td class="colFirst"><code><a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch()">watch</a></span>()</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190632" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i36" class="altColor">
+            <td class="colFirst"><code><a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch(com.mongodb.client.ClientSession)">watch</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190892" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i37" class="rowColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch(com.mongodb.client.ClientSession,java.lang.Class)">watch</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="191152" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i38" class="altColor">
+            <td class="colFirst"><code><a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch(com.mongodb.client.ClientSession,java.util.List)">watch</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="191412" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i39" class="rowColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch(com.mongodb.client.ClientSession,java.util.List,java.lang.Class)">watch</a></span>​(<a
+                        href="ClientSession.html"
+                        title="interface in com.mongodb.client">ClientSession</a>&nbsp;clientSession,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="191672" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i40" class="altColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch(java.lang.Class)">watch</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189579" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i41" class="rowColor">
+            <td class="colFirst"><code><a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/Document.html?is-external=true"
+                        title="class or interface in org.bson" class="externalLink">Document</a>&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch(java.util.List)">watch</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="189839" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i42" class="altColor">
+            <td class="colFirst"><code>&lt;TResult&gt;&nbsp;<a href="ChangeStreamIterable.html"
+                        title="interface in com.mongodb.client">ChangeStreamIterable</a>&lt;TResult&gt;</code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#watch(java.util.List,java.lang.Class)">watch</a></span>​(<a
+                        target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true"
+                        title="class or interface in java.util" class="externalLink">List</a>&lt;? extends <a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/conversions/Bson.html?is-external=true"
+                        title="class or interface in org.bson.conversions"
+                        class="externalLink">Bson</a>&gt;&nbsp;pipeline,
+                    <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Class.html?is-external=true"
+                        title="class or interface in java.lang"
+                        class="externalLink">Class</a>&lt;TResult&gt;&nbsp;resultClass)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190099" _msttexthash="40262482">为此数据库创建更改流。</div>
+            </td>
+        </tr>
+        <tr id="i43" class="rowColor">
+            <td class="colFirst"><code><a href="MongoDatabase.html"
+                        title="interface in com.mongodb.client">MongoDatabase</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#withCodecRegistry(org.bson.codecs.configuration.CodecRegistry)">withCodecRegistry</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/bson/org/bson/codecs/configuration/CodecRegistry.html?is-external=true"
+                        title="class or interface in org.bson.codecs.configuration"
+                        class="externalLink">CodecRegistry</a>&nbsp;codecRegistry)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190359" _msttexthash="122738005">使用不同的编解码器注册表创建一个新的 MongoDatabase 实例。</div>
+            </td>
+        </tr>
+        <tr id="i44" class="altColor">
+            <td class="colFirst"><code><a href="MongoDatabase.html"
+                        title="interface in com.mongodb.client">MongoDatabase</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#withReadConcern(com.mongodb.ReadConcern)">withReadConcern</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadConcern.html?is-external=true"
+                        title="class or interface in com.mongodb"
+                        class="externalLink">ReadConcern</a>&nbsp;readConcern)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190619" _msttexthash="174426018">创建一个新的 MongoDatabase 实例，具有不同的读取关注点。</div>
+            </td>
+        </tr>
+        <tr id="i45" class="rowColor">
+            <td class="colFirst"><code><a href="MongoDatabase.html"
+                        title="interface in com.mongodb.client">MongoDatabase</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#withReadPreference(com.mongodb.ReadPreference)">withReadPreference</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/ReadPreference.html?is-external=true"
+                        title="class or interface in com.mongodb"
+                        class="externalLink">ReadPreference</a>&nbsp;readPreference)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="190879" _msttexthash="103762516">创建一个具有不同读取首选项的新 MongoDatabase 实例。</div>
+            </td>
+        </tr>
+        <tr id="i46" class="altColor">
+            <td class="colFirst"><code><a href="MongoDatabase.html"
+                        title="interface in com.mongodb.client">MongoDatabase</a></code></td>
+            <th class="colSecond" scope="row"><code><span class="memberNameLink"><a
+                            href="#withWriteConcern(com.mongodb.WriteConcern)">withWriteConcern</a></span>​(<a
+                        target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-java-driver/4.0/apidocs/mongodb-driver-core/com/mongodb/WriteConcern.html?is-external=true"
+                        title="class or interface in com.mongodb"
+                        class="externalLink">WriteConcern</a>&nbsp;writeConcern)</code></th>
+            <td class="colLast">
+                <div class="block" _msthash="191139" _msttexthash="92019005">创建一个具有不同写入关注点的新 MongoDatabase 实例。</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</details>
+
+<h2 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">database<span class="token punctuation">.</span><span class="token function">createCollection</span><span class="token punctuation">(</span><span class="token string">"tutorial"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="使用集合"><a href="#使用集合" class="headerlink" title="使用集合"></a>使用集合</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">MongoCollection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Document</span><span class="token punctuation">></span></span> collection <span class="token operator">=</span> database<span class="token punctuation">.</span><span class="token function">getCollection</span><span class="token punctuation">(</span><span class="token string">"TEST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="创建文档"><a href="#创建文档" class="headerlink" title="创建文档"></a>创建文档</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Document</span> document <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Document</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"MongoDBTest"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"time"</span><span class="token punctuation">,</span><span class="token string">"2022,02,22"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">,</span><span class="token string">"me"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">collection<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>插入多条文档</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token class-name">Document</span> document1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Document</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"title1"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"time"</span><span class="token punctuation">,</span><span class="token string">"2021,01,11"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">,</span><span class="token string">"me"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Document</span> document2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Document</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"title2"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"time"</span><span class="token punctuation">,</span><span class="token string">"2019,09,19"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">,</span><span class="token string">"you?"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">List</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Document</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>document1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>document2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+collection<span class="token punctuation">.</span><span class="token function">insertMany</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 获取 iterable 对象</span>
+<span class="token class-name">FindIterable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Document</span><span class="token punctuation">></span></span> iterables <span class="token operator">=</span> collection<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 获取迭代器</span>
+<span class="token class-name">Iterator</span> iterator <span class="token operator">=</span> iterables<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">collection<span class="token punctuation">.</span><span class="token function">updateOne</span><span class="token punctuation">(</span><span class="token class-name">Filters</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"title1"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Updates</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"TITLE1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//如果更新的键已存在则更新，不存在则插入新的键值对。        </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">collection<span class="token punctuation">.</span><span class="token function">deleteOne</span><span class="token punctuation">(</span><span class="token class-name">Filters</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span><span class="token string">"TITLE1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">collection<span class="token punctuation">.</span><span class="token function">drop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>落花生</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://dbin.top/2022/02/24/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/MongoDB%20Java%20Driver/" title="MongoDB Java Driver">https://dbin.top/2022/02/24/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/MongoDB%20Java%20Driver/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/2022/02/23/SQL/MongoDB%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="MongoDB 学习笔记"><span class="post-nav-text">MongoDB 学习笔记</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 – 2022 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.yunyoujun.cn/" title="网站源码来自"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 落花生</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.0.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.2</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-06-18T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#4fcde3" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><script>const date = new Date();
+const today = (date.getMonth() + 1) + "-" + date.getDate()
+const mourn_days = ["4-4","5-12","9-18"]
+if (mourn_days.includes(today)) {
+  document.documentElement.style.filter = "grayscale(1)";
+}</script></div></body></html>

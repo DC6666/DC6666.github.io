@@ -1,0 +1,628 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#4fcde3"><meta name="author" content="落花生"><meta name="copyright" content="落花生"><meta name="generator" content="Hexo 6.0.0"><meta name="theme" content="hexo-theme-yun"><title>SQL基础语法 | 唯落花生</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-okaidia.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#4fcde3"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"dbin.top","root":"/","title":["落","花","生","的","小","站"],"version":"1.6.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.json"},"fireworks":{"colors":["0, 0, 0","255, 255, 255","128, 128, 128","201, 4, 17"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><script src="//at.alicdn.com/t/font_2648851_os7f9jxepo.js" async></script><script src="/girlss/autoload.js" async></script><meta name="description" content="关于SQL语言 基于SQL Service">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL基础语法">
+<meta property="og:url" content="https://dbin.top/2021/10/14/SQL/SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="唯落花生">
+<meta property="og:description" content="关于SQL语言 基于SQL Service">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-13T21:29:29.000Z">
+<meta property="article:modified_time" content="2022-02-06T14:34:14.195Z">
+<meta property="article:author" content="落花生">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="落花生"><img width="96" loading="lazy" src="http://dbins.gitee.io/image/head/head.jpg" alt="落花生"><span class="site-author-status" title="开心每一天">🥰</span></a><div class="site-author-name"><a href="/about/">落花生</a></div><a class="site-name" href="/about/site.html">唯落花生</a><sub class="site-subtitle">improve oneself</sub><div class="site-desciption">花生有个长在枝头的理想吗？</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg></span><span class="site-state-item-count">44</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fenlei"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-biaoqian"></use></svg></span><span class="site-state-item-count">27</span></a></div><a class="site-state-item hty-icon-button" href="/others/index.html" title="others"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shezhi1"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wanmujun@aliyun.com" title="E-Mail" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-icon-test"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:beifen404@gmail.com" title="备用邮箱" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-youxiang4"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E6%A1%83%E5%AD%90" title="Twitter" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="frends" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-men-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ESQL%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">关于SQL语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84SQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.</span> <span class="toc-text">常用的SQL语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">SQL变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transact-SQL"><span class="toc-number">4.</span> <span class="toc-text">Transact-SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88Operator"><span class="toc-number">4.1.</span> <span class="toc-text">运算符（Operator)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="toc-number">4.2.</span> <span class="toc-text">通配符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Server-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">SQL Server 内置函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">1字符串函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">2日期函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.3.</span> <span class="toc-text">3数学函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.3.4.</span> <span class="toc-text">4类型转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.5.</span> <span class="toc-text">5聚合函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%95%85%E6%8E%A7%E5%88%B6"><span class="toc-number">4.4.</span> <span class="toc-text">流畅控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#if%E2%80%A6else"><span class="toc-number">4.4.1.</span> <span class="toc-text">if…else</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#begin%E2%80%A6end"><span class="toc-number">4.4.2.</span> <span class="toc-text">begin…end</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#case"><span class="toc-number">4.4.3.</span> <span class="toc-text">case</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#while"><span class="toc-number">4.4.4.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#try%E2%80%A6catch"><span class="toc-number">4.4.5.</span> <span class="toc-text">try…catch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#return"><span class="toc-number">4.4.6.</span> <span class="toc-text">return</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E7%BA%B5%E8%AF%AD%E8%A8%80-DML"><span class="toc-number">5.</span> <span class="toc-text">数据库操纵语言(DML)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5"><span class="toc-number">5.1.</span> <span class="toc-text">数据插入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#insert"><span class="toc-number">5.1.1.</span> <span class="toc-text">insert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#select-into"><span class="toc-number">5.1.2.</span> <span class="toc-text">select into</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert-select"><span class="toc-number">5.1.3.</span> <span class="toc-text">insert select</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0"><span class="toc-number">5.2.</span> <span class="toc-text">数据更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4"><span class="toc-number">5.3.</span> <span class="toc-text">数据删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.4.</span> <span class="toc-text">查询语句</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://dbin.top/2021/10/14/SQL/SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="落花生"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="唯落花生"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">SQL基础语法</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-10-14 05:29:29" itemprop="dateCreated datePublished" datetime="2021-10-14T05:29:29+08:00">2021-10-14</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-02-06 22:34:14" itemprop="dateModified" datetime="2022-02-06T22:34:14+08:00">2022-02-06</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">3.3k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">12m</span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2021/10/14/SQL/SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:#007EFF" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/" style="--text-color:#28d8f7" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/SQL/" style="--text-color:#FF1CAE"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">SQL</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#4fcde3;"><h2 id="关于SQL语言"><a href="#关于SQL语言" class="headerlink" title="关于SQL语言"></a>关于SQL语言</h2><blockquote>
+<p>基于SQL Service</p>
+</blockquote>
+<span id="more"></span>
+
+<p>SQL（Structured Query Language，结构化查询语言）是用户操作关系数据库的通用语言。SQL已经成为关系数据库的标准语言，现在所有的关系数据库管理系统都支持SQL。  </p>
+<p>SQL常用语句</p>
+<table border="1"><thead><tr><th><span>语句</span></th><th><span>功能</span></th><th><span>语句</span></th><th><span>功能</span></th></tr></thead><tbody><tr><td colspan="2"><span>数据操作</span></td><td><span>ALTER DOMAIN</span></td><td><span>改变域定义</span></td></tr><tr><td><span>SELECT</span></td><td><span>从数据库表中检索数据</span></td><td><span>DROP DOMAIN</span></td><td><span>从数据库中删除域</span></td></tr><tr><td><span>INSERT</span></td><td><span>向数据库表中添加数据行</span></td><td colspan="2"><span>数据控制</span></td></tr><tr><td><span>DELETE</span></td><td><span>从数据库表中删除数据行</span></td><td><span>GRANT</span></td><td><span>授予用户访问权限</span></td></tr><tr><td><span>UPDATE</span></td><td><span>更新数据库表中的数据</span></td><td><span>DENY</span></td><td><span>拒绝用户访问</span></td></tr><tr><td colspan="2"><span>数据定义</span></td><td><span>REVOKE</span></td><td><span>解除用户访问权限</span></td></tr><tr><td><span>CREATE TABLE</span></td><td><span>创建一个数据库表</span></td><td colspan="2"><span>事务控制</span></td></tr><tr><td><span>DROP TABLE</span></td><td><span>从数据库中删除表</span></td><td><span>COMMIT</span></td><td><span>结束当前事务</span></td></tr><tr><td><span>ALTER TABLE</span></td><td><span>修改数据库表结构</span></td><td><span>ROLLBACK</span></td><td><span>回滚当前事务</span></td></tr><tr><td><span>CREATE VIEW</span></td><td><span>创建一个视图</span></td><td><span>SAVE TRANSACTION</span></td><td><span>在事务内设置保存点</span></td></tr><tr><td><span>DROP VIEW</span></td><td><span>从数据库中删除视图</span></td><td colspan="2"><span>程序化SQL</span></td></tr><tr><td><span>CREATE INDEX</span></td><td><span>为数据库表创建一个索引</span></td><td><span>DECLARE</span></td><td><span>设定游标</span></td></tr><tr><td><span>DROP INDEX</span></td><td><span>从数据库中删除索引</span></td><td><span>OPEN</span></td><td><span>打开一个游标</span></td></tr><tr><td><span>CREATE PROCEDURE</span></td><td><span>创建一个存储过程</span></td><td><span>FETCH</span></td><td><span>检索一行查询结果</span></td></tr><tr><td><span>DROP PROCEDURE</span></td><td><span>从数据库中删除存储过程</span></td><td><span>CLOSE</span></td><td><span>关闭游标</span></td></tr><tr><td><span>CREATE TRIGGER</span></td><td><span>创建一个触发器</span></td><td><span>PREPARE</span></td><td><span>为动态执行准备SQL语句</span></td></tr><tr><td><span>DROP TRIGGER</span></td><td><span>从数据库中删除触发器</span></td><td><span>EXECUTE</span></td><td><span>动态执行SQL语句</span></td></tr><tr><td><span>CREATE DOMAIN</span></td><td><span>创建一个数据值域</span></td><td colspan="2"><span></span></td></tr></tbody></table>
+
+<h2 id="常用的SQL语句"><a href="#常用的SQL语句" class="headerlink" title="常用的SQL语句"></a>常用的SQL语句</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> 表名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>嘿嘿，就这一句就够了，学那么多干嘛？？？</p>
+<h2 id="SQL变量"><a href="#SQL变量" class="headerlink" title="SQL变量"></a>SQL变量</h2><p><code>局部变量声明</code></p>
+<p>必须以@开头且必须用declare声明</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@test</span> <span class="token keyword">int</span>
+<span class="token keyword">declare</span> <span class="token variable">@id</span> <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>使用select或set命令设定变量的值</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token variable">@test</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">set</span> <span class="token variable">@test</span> <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token keyword">select</span> <span class="token variable">@id</span> <span class="token operator">=</span> <span class="token string">'123456'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><code>全局变量</code> l<strong>全局变量是</strong>SQL Server系统内部使用的变量，其作用范围并不局限于某一程序，而是任何程序均可随时调用全局变量通常存储一些SQL Server的配置设定值和效能统计数据。用户可在程序中用全局变量来测试系统的设定值或Transact-SQL命令执行后的状态值。</p>
+<p><code>全局变量声明</code>无，**全局变量不是由用户的程序定义的，它们是在服务器级定义的。只能使用预先说明及定义的变局变量。引用全局变量时，必须以@@开头。局部变量的名称不能与全局变量的名称相同、否则会在应用中出错。例如：SELECT @@ServerName显示服务器名。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">@<span class="token variable">@ServerName</span><span class="token comment">--服务器名</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="Transact-SQL"><a href="#Transact-SQL" class="headerlink" title="Transact-SQL"></a>Transact-SQL</h2><h3 id="运算符（Operator"><a href="#运算符（Operator" class="headerlink" title="运算符（Operator)"></a>运算符（Operator)</h3><pre class="line-numbers language-none"><code class="language-none">算术运算符 ：+ －× &#x2F; ％
+比较运算符 ：&gt; &lt; !&#x3D; &lt;&#x3D; 
+逻辑运算符： AND、OR、NOT 
+位运算符 ：&amp;  |  ~  ^
+连接运算符：&lt;expression1&gt;+&lt;expression2&gt;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><table>
+<thead>
+<tr>
+<th><strong>通配符</strong></th>
+<th><strong>功  能</strong></th>
+<th><strong>实   例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>%</strong></td>
+<td><strong>代表零个或多个字符</strong></td>
+<td>‘ab%’,’ab’后可以接任意字符串</td>
+</tr>
+<tr>
+<td><strong>_(<strong><strong>下划线</strong></strong>)</strong></td>
+<td><strong>代表一个字符</strong></td>
+<td>‘a_b’,’a’和’b’之间可以有一个字符</td>
+</tr>
+<tr>
+<td><strong>[  ]</strong></td>
+<td><strong>表示在某一范围的字符</strong></td>
+<td>[0-5],0到5之间的任意字符</td>
+</tr>
+<tr>
+<td><strong>[^]</strong></td>
+<td><strong>表示不在某一范围的字符</strong></td>
+<td>[^0-5],不在0到5之间的任意字符</td>
+</tr>
+</tbody></table>
+<h3 id="SQL-Server-内置函数"><a href="#SQL-Server-内置函数" class="headerlink" title="SQL Server 内置函数"></a>SQL Server 内置函数</h3><h4 id="1字符串函数"><a href="#1字符串函数" class="headerlink" title="1字符串函数"></a>1字符串函数</h4><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th></th>
+<th>函数名</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ASCII</td>
+<td>(字符表达式)</td>
+<td>SELECT ASCII(“ABC”)</td>
+<td>返回65，最左边的字符 “A”的ASCII码。</td>
+</tr>
+<tr>
+<td>CHAR</td>
+<td>(整数表达式)</td>
+<td>SELECT CHAR(65)</td>
+<td>返回 “A”，同该ASCII码值等价的字符。</td>
+</tr>
+<tr>
+<td>CHARINDEX</td>
+<td>(模式, 表达式)</td>
+<td>SELECT CHARINDEX (“E”,”HELLO”)</td>
+<td>返回2，指定模式在表达式中的起始位置。</td>
+</tr>
+<tr>
+<td>DIFFERENCE</td>
+<td>(字符表达式1, 字符表达式2)</td>
+<td>SELECT DIFFERENCE (“HELLO”, ”hell”)</td>
+<td>返回4， DIFFERENCE 函数比较两个字符串并估计出它们的相似程度，返回一个从0 到 4的值。4表示非常相似。</td>
+</tr>
+<tr>
+<td>LEFT</td>
+<td>(字符表达式, 整数表达式)</td>
+<td>SELECT LEFT     (“RICHARD”,4)</td>
+<td>返回 “RICH”, 它是字符串的一部分，从左边开始计算，其长度等同于整数表达式中指定的长度。</td>
+</tr>
+<tr>
+<td>LEN</td>
+<td>(字符表达式)</td>
+<td>SELECT LEN(“RICHARD”)</td>
+<td>返回7, 字符表达式中字符的个数。</td>
+</tr>
+<tr>
+<td>LOWER</td>
+<td>(字符表达式)</td>
+<td>SELECT LOWER(“RICHARD”)</td>
+<td>返回 “richard”, 将字符表达式转换成小写。</td>
+</tr>
+<tr>
+<td>LTRIM</td>
+<td>(字符表达式)</td>
+<td>SELECT LTRIM(“  RICHARD”)</td>
+<td>返回没有先导空格的 “RICHARD”。它从字符表达式中移去了先导空格。</td>
+</tr>
+<tr>
+<td>PATINDEX</td>
+<td>(‘%模式%’，表达式)</td>
+<td>Select PATINDEX(“%BOX%”,”ACTIONBOX”)</td>
+<td>返回 7, 指定了模式在指定表达式中第一个出现的位置。如果模式在表达式中不存在，则返回0。</td>
+</tr>
+<tr>
+<td>REVERSE</td>
+<td>(字符表达式)</td>
+<td>SELECT REVERSE(“ACTION”)</td>
+<td>返回 “NOITCA”，反转之后的字符表达式。</td>
+</tr>
+<tr>
+<td>RIGHT</td>
+<td>(字符表达式, 整数表达式)</td>
+<td>SELECT RIGHT(“RICHARD”,4)</td>
+<td>返回“HARD”， 它是字符串的一部分，从右边开始计算，其长度等同于整数表达式中指定的长度。</td>
+</tr>
+<tr>
+<td>RTRIM</td>
+<td>(字符表达式)</td>
+<td>SELECT RTRIM(“RICHARD  “)</td>
+<td>返回 “RICHARD” ，从字符表达式中移去了尾部空格。</td>
+</tr>
+<tr>
+<td>SPACE</td>
+<td>(整数表达式)</td>
+<td>SELECT “RICHARD”+SPACE(2)+”HILL”</td>
+<td>返回 “RICHARD HILL”, 在第一和第二个词之间插入了两个空格。</td>
+</tr>
+<tr>
+<td>STR</td>
+<td>(浮点表达式, [长度,    [小数位]])</td>
+<td>SELECT STR(123.45,6,2)</td>
+<td>返回 “123.45”，它将数值数据转换成字符数据，长度是总的长度，包括小数点、符号、数字、空格。小数位是指小数点右边的位数。</td>
+</tr>
+<tr>
+<td>UPPER</td>
+<td>(字符表达式)</td>
+<td>UPPER(“Richard”)</td>
+<td>返回 “RICHARD”, 它把字符表达式转换成大写。</td>
+</tr>
+<tr>
+<td>STUFF</td>
+<td>(字符表达式1, 起始,长度, 字符表达式2)</td>
+<td>SELECT STUFF(‘Weather’, 2,2 , ‘i’)</td>
+<td>返回 “Wither“。从字符表达式1的“起始”开始删除“长度”个字符，然后在“起始”位置往字符表达式1里插入字符表达式2。</td>
+</tr>
+<tr>
+<td>SUBSTRING</td>
+<td>(表达式,起始,长度)</td>
+<td>SELECT SUBSTRING(‘Weather’, 2,2)</td>
+<td>返回 “ea”, 它是字符表达式的一部分</td>
+</tr>
+</tbody></table>
+<h4 id="2日期函数"><a href="#2日期函数" class="headerlink" title="2日期函数"></a>2日期函数</h4><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DATEADD</td>
+<td>(日期元素, 数字, 日期)</td>
+<td>向指定日期添加“数字”个“日期元素”。</td>
+</tr>
+<tr>
+<td>DATEDIFF</td>
+<td>(日期元素, 日期1, 日期2)</td>
+<td>返回两个日期之间的“日期元素”的个数。</td>
+</tr>
+<tr>
+<td>DATENAME</td>
+<td>(日期元素, 日期)</td>
+<td>以ASCII 码的形式返回指定日期的“日期元素”。(例如, October)</td>
+</tr>
+<tr>
+<td>DATEPART</td>
+<td>(日期元素, 日期)</td>
+<td>以整数的形式返回指定日期的“日期元素”。</td>
+</tr>
+<tr>
+<td>DAY</td>
+<td>(日期)</td>
+<td>返回一个整数，表示指定日期的“天”部分</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>(日期)</td>
+<td>返回一个整数，表示指定日期的“月”部分</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>(日期)</td>
+<td>返回一个整数，表示指定日期的“年”部分</td>
+</tr>
+<tr>
+<td>GETDATE</td>
+<td>( )</td>
+<td>返回当前的日期和时间。</td>
+</tr>
+<tr>
+<td>GETUTCDATE</td>
+<td>( )</td>
+<td>返回当前的UTC（国际时也称格林尼治标准时间）日期和时间。</td>
+</tr>
+<tr>
+<td>year</td>
+<td>yy</td>
+<td>1753-9999</td>
+</tr>
+<tr>
+<td>quarter</td>
+<td>qq</td>
+<td>1月4日</td>
+</tr>
+<tr>
+<td>month</td>
+<td>mm</td>
+<td>1月12日</td>
+</tr>
+<tr>
+<td>day of year</td>
+<td>dy</td>
+<td>1-366</td>
+</tr>
+<tr>
+<td>day</td>
+<td>dd</td>
+<td>1月31日</td>
+</tr>
+<tr>
+<td>week</td>
+<td>wk</td>
+<td>0-51</td>
+</tr>
+<tr>
+<td>weekday</td>
+<td>dw</td>
+<td>1-7(1 is Sunday)</td>
+</tr>
+<tr>
+<td>hour</td>
+<td>hh</td>
+<td>(0-23)</td>
+</tr>
+<tr>
+<td>minute</td>
+<td>mi</td>
+<td>(0-59)</td>
+</tr>
+<tr>
+<td>second</td>
+<td>ss</td>
+<td>0-59</td>
+</tr>
+<tr>
+<td>millisecond</td>
+<td>ms</td>
+<td>0-999</td>
+</tr>
+</tbody></table>
+<h4 id="3数学函数"><a href="#3数学函数" class="headerlink" title="3数学函数"></a>3数学函数</h4><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ABS</td>
+<td>(数值表达式)</td>
+<td>绝对值。</td>
+</tr>
+<tr>
+<td>ACOS, ASIN, ATAN, ATN2</td>
+<td>(浮点表达式)</td>
+<td>用弧度表示的角，其余弦、正弦、正切是一个浮点数。</td>
+</tr>
+<tr>
+<td>COS, SIN, COT, TAN</td>
+<td>(浮点表达式)</td>
+<td>角(用弧度表示)的正弦、余弦、正切值。</td>
+</tr>
+<tr>
+<td>DEGREES</td>
+<td>(数值表达式)</td>
+<td>大于或等于指定值的最小整数。</td>
+</tr>
+<tr>
+<td>EXP</td>
+<td>(浮点表达式)</td>
+<td>指定值的幂值。</td>
+</tr>
+<tr>
+<td>FLOOR</td>
+<td>(数值表达式)</td>
+<td>小于或等于指定值的最大整数。</td>
+</tr>
+<tr>
+<td>LOG</td>
+<td>(浮点表达式)</td>
+<td>指定值的自然对数。</td>
+</tr>
+<tr>
+<td>LOG10</td>
+<td>(浮点表达式)</td>
+<td>指定值的以10为底的对数。</td>
+</tr>
+<tr>
+<td>PI</td>
+<td>()</td>
+<td>3.141592653589793的常数值。</td>
+</tr>
+<tr>
+<td>POWER</td>
+<td>(数值表达式, y)</td>
+<td>数值表达式的y次幂。</td>
+</tr>
+<tr>
+<td>RADIANS</td>
+<td>(数值表达式)</td>
+<td>将角度转换成弧度。</td>
+</tr>
+<tr>
+<td>RAND</td>
+<td>([seed])</td>
+<td>0和 1之间的随机浮点数。</td>
+</tr>
+<tr>
+<td>ROUND</td>
+<td>(数值表达式, 长度)</td>
+<td>根据以整数形式指定的长度对数值表达式进行四舍五入。ROUND(123.456,2)&#x3D;123.12,  ROUND(123.456,0)&#x3D;123, ROUND(123.456,-1)&#x3D;123</td>
+</tr>
+<tr>
+<td>SIGN</td>
+<td>(数值表达式)</td>
+<td>正数、负数或零。</td>
+</tr>
+<tr>
+<td>SQRT</td>
+<td>(浮点表达式)</td>
+<td>指定值的平方根。</td>
+</tr>
+</tbody></table>
+<h4 id="4类型转换"><a href="#4类型转换" class="headerlink" title="4类型转换"></a>4类型转换</h4><p>l有两个函数（CAST()&#x2F;CONVERT）可以将数据从一个数据类型转换成另一种数据类型。他们的不同在于，CAST( )具有ANSI SQL-92的兼容性，而CONVERT( )则功能更为强大。</p>
+<p>lCAST( )的语法如下：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">CAST<span class="token punctuation">(</span> variable_or_column <span class="token keyword">AS</span> datatype<span class="token punctuation">)</span>
+
+<span class="token comment">--如</span>
+<span class="token keyword">DECLARE</span> <span class="token variable">@Cast</span> <span class="token keyword">int</span>
+<span class="token keyword">SET</span> <span class="token variable">@Cast</span> <span class="token operator">=</span> <span class="token number">1234</span>
+<span class="token keyword">SELECT</span> CAST<span class="token punctuation">(</span><span class="token variable">@Cast</span> <span class="token keyword">AS</span> <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>CONVERT（）的语法如下：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">lCONVERT（datatype<span class="token punctuation">,</span> variable_or_column）
+
+<span class="token comment">--如</span>
+<span class="token keyword">DECLARE</span> <span class="token variable">@Convert</span> <span class="token keyword">int</span>
+<span class="token keyword">SET</span> <span class="token variable">@Convert</span> <span class="token operator">=</span> <span class="token number">1234</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">CONVERT</span> <span class="token punctuation">(</span><span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>，<span class="token variable">@Convert</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5聚合函数"><a href="#5聚合函数" class="headerlink" title="5聚合函数"></a>5聚合函数</h4><p>聚合函数经常与SELECT语句的GROUP BY 子句一起使用。所有聚合函数均为确定性函数，也就是说，只要使用一组特定输入值调用聚合函数，该函数总是返回相同的值。它可以对一组执行计算，并返回多个值。 </p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVG</td>
+<td>([ALL|DISTINCT] expression)</td>
+<td>数学表达式中指定字段的均值，或者计算所有记录，或分别计算该字段上值不同的记录。</td>
+</tr>
+<tr>
+<td>CHECKSUM</td>
+<td>(* | expression [ ,…n ])</td>
+<td>生成哈希索引，返回按照表达某一行或一组表达式计算出来的校验和值</td>
+</tr>
+<tr>
+<td>CHECKSUM_AGG</td>
+<td>( [ ALL | DISTINCT ] expression )</td>
+<td>将所有 expression 值的校验值作为 int 返回</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>([ALL|DISTINCT] expression)</td>
+<td>表达式中指定字段上记录的个数，或者是所有记录，或者是该字段上值不同的记录。</td>
+</tr>
+<tr>
+<td>COUNT_BIG</td>
+<td>( { [ ALL | DISTINCT ] expression } | * )</td>
+<td>返回的是bigint类型</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>(*)</td>
+<td>选中的行数。</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>(expression)</td>
+<td>表达式中的最大值。</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>(expression)</td>
+<td>表达式中的最小值。</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>([ALL|DISTINCT] expression)</td>
+<td>数学表达式中指定字段的总和。或者计算所有记录，或分别计算该字段上值不同的记录。</td>
+</tr>
+<tr>
+<td>STEDV</td>
+<td>( [ ALL | DISTINCT ] expression )</td>
+<td>返回指定表达式只能够所有值的标准偏差</td>
+</tr>
+<tr>
+<td>STEDVP</td>
+<td>( [ ALL | DISTINCT ] expression )</td>
+<td>返回指定表达式只能够所有值的总体标准偏差</td>
+</tr>
+<tr>
+<td>VAR</td>
+<td>( [ ALL | DISTINCT ] expression )</td>
+<td>返回指定表达式只能够所有值的方差</td>
+</tr>
+<tr>
+<td>VARP</td>
+<td>( [ ALL | DISTINCT ] expression )</td>
+<td>返回指定表达式只能够所有值的总体方差</td>
+</tr>
+</tbody></table>
+<h3 id="流畅控制"><a href="#流畅控制" class="headerlink" title="流畅控制"></a>流畅控制</h3><p> Transact-SQL 语言使用的流程控制命令与常见的程序设计语言类似,主要有以下几种控制命令。 </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">IF</span>…<span class="token keyword">ELSE</span> 
+ <span class="token keyword">BEGIN</span>…<span class="token keyword">END</span> 
+<span class="token keyword">CASE</span> 
+<span class="token keyword">WHILE</span>…<span class="token keyword">CONTINUE</span>…<span class="token keyword">BREAK</span> 
+<span class="token keyword">WAITFOR</span> 
+<span class="token keyword">GOTO</span> 
+<span class="token keyword">RETURN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="if…else"><a href="#if…else" class="headerlink" title="if…else"></a>if…else</h4><p>可嵌套使用</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">if</span> <span class="token operator">&lt;</span>条件表达式<span class="token operator">></span>
+	<span class="token operator">&lt;</span>代码块<span class="token operator">></span>
+<span class="token keyword">else</span>
+	<span class="token operator">&lt;</span>代码块<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="begin…end"><a href="#begin…end" class="headerlink" title="begin…end"></a>begin…end</h4><p>BEGIN…END用来设定一个程序块，将在BEGIN…END内的所有程序视为一个单元执行BEGIN…END经常在条件语句，如IF…ELSE中使用。在BEGIN…END中可嵌套另外的BEGIN…END来定义另一程序块。 </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">begin</span> <span class="token operator">&lt;</span>程序块<span class="token operator">></span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="case"><a href="#case" class="headerlink" title="case"></a>case</h4><p>使用方法1.</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">case</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span>
+<span class="token keyword">when</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span> <span class="token keyword">then</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span>
+<span class="token keyword">when</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span> <span class="token keyword">then</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span>
+<span class="token keyword">else</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用方法2</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">case</span>
+<span class="token keyword">when</span> <span class="token operator">&lt;</span>条件表达式<span class="token operator">></span> <span class="token keyword">then</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span>
+<span class="token keyword">when</span> <span class="token operator">&lt;</span>条件表达式<span class="token operator">></span> <span class="token keyword">then</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span>
+<span class="token keyword">else</span> <span class="token operator">&lt;</span>运算式<span class="token operator">></span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> cOrderNo<span class="token punctuation">,</span> dOrderDate<span class="token punctuation">,</span> cShopperId<span class="token punctuation">,</span> mTotalCost<span class="token punctuation">,</span>
+<span class="token keyword">CASE</span> 
+<span class="token keyword">WHEN</span> cOrderProcessed<span class="token operator">=</span><span class="token string">'Y'</span> <span class="token keyword">THEN</span> <span class="token string">'已处理'</span> 
+<span class="token keyword">WHEN</span> cOrderProcessed<span class="token operator">=</span><span class="token string">'N'</span> <span class="token keyword">THEN</span> <span class="token string">'未处理'</span> 
+<span class="token keyword">ELSE</span> <span class="token string">'未知'</span> 
+<span class="token keyword">END</span> <span class="token keyword">AS</span> cOrderProcessed
+<span class="token keyword">FROM</span> Orders <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><font color="red">CASE语句不能单独使用，必须嵌入到其它SQL语句中。</font></p>
+<h4 id="while"><a href="#while" class="headerlink" title="while"></a>while</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">while</span> <span class="token operator">&lt;</span>条件表达式<span class="token operator">></span>
+<span class="token keyword">begin</span>
+<span class="token operator">&lt;</span>命令行或程序块<span class="token operator">></span>
+<span class="token punctuation">[</span><span class="token keyword">break</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token keyword">continue</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span>命令行或程序块<span class="token punctuation">]</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="try…catch"><a href="#try…catch" class="headerlink" title="try…catch"></a>try…catch</h4><p>Transact-SQL代码中的错误可使用 TRY…CATCH 构造处理，此功能类似于 其他编程语言的异常处理功能。<br>TRY…CATCH 构造包括两部分：一个 TRY 块和一个 CATCH 块。如果在 TRY 块内的 Transact-SQL 语句中检测到错误条件，则控制将被传递到 CATCH 块（可在此块中处理此错误）。 </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">begin</span> try
+	<span class="token comment">--代码</span>
+<span class="token keyword">end</span> try
+	<span class="token comment">--代码</span>
+<span class="token keyword">begin</span> catch
+	<span class="token comment">--代码</span>
+<span class="token keyword">end</span> catch<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="return"><a href="#return" class="headerlink" title="return"></a>return</h4><pre class="line-numbers language-none"><code class="language-none">return [整数值]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="数据库操纵语言-DML"><a href="#数据库操纵语言-DML" class="headerlink" title="数据库操纵语言(DML)"></a>数据库操纵语言(DML)</h2><p>INSERT  ：插入数据<br>UPDATE ：修改数据（更新数据）<br>DELETE ： 删除数据</p>
+<h3 id="数据插入"><a href="#数据插入" class="headerlink" title="数据插入"></a>数据插入</h3><h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a><code>insert</code></h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token punctuation">`</span>表名<span class="token punctuation">`</span> <span class="token punctuation">[</span><span class="token string">'可选字段'</span><span class="token punctuation">]</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'...'</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">--一条数据</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token punctuation">`</span>表名<span class="token punctuation">`</span> <span class="token punctuation">[</span><span class="token string">'可选字段'</span><span class="token punctuation">]</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'...'</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'...'</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">--多条数据</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>·数值的个数必须和表中或列列表中的属性个数相同。<br>·插入信息的次序必须和插入列表中列出的属性次序相同。<br>·信息的数据类型必须和表列中的数据类型匹配。<br>·当插入VARBINARY类型的数据时，其尾部的“0”将被去掉。<br>·当插入VARCHAR或TEXT类型的数据时，其后的空格将被去掉，如果插入一个只含空格的字符串，则会被认为插入了一个长度为零的字符串。<br>·IDENTITY列不能指定数据，在VALUES列表中应跳过此列。<br>·对字符类型的列，当插入数据，特别是插入字符串中含有数字字符以外的字符时，最好用引号将其括起来，否则容易出错。 </p>
+<h4 id="select-into"><a href="#select-into" class="headerlink" title="select into"></a>select into</h4><p>SELECT INTO 命令将一个表的内容复制到另一个新表（数据库中不存在）。SELECT INTO 语句创建一个新表，并用 SELECT 的结果集填充该表。 </p>
+<p>语法：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> 列列表
+<span class="token keyword">INTO</span> 新表名
+<span class="token keyword">FROM</span> 表名
+<span class="token keyword">WHERE</span> 条件 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="insert-select"><a href="#insert-select" class="headerlink" title="insert select"></a>insert select</h4><p>INSERT INTO命令，从一个表向另一个已经存在的表添加数据。<br>语法：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span>  <span class="token punctuation">[</span><span class="token keyword">INTO</span><span class="token punctuation">]</span> 表名<span class="token number">1</span>
+<span class="token keyword">SELECT</span> 列名<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> 表名<span class="token number">2</span>
+<span class="token punctuation">[</span><span class="token keyword">WHERE</span> 条件<span class="token punctuation">]</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><code>updata</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">update</span>
+<span class="token keyword">set</span> <span class="token punctuation">`</span>列名<span class="token punctuation">`</span><span class="token operator">=</span>值<span class="token punctuation">,</span><span class="token punctuation">`</span>列名<span class="token punctuation">`</span><span class="token operator">=</span>值<span class="token comment">--插入多条</span>
+<span class="token keyword">from</span> <span class="token punctuation">`</span>表名<span class="token punctuation">`</span>
+<span class="token keyword">where</span> 条件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>同一时刻只能对一张表进行更新。<br>如果一次更新违背了完整性约束，则所有的更新都将被回滚，也就是说，表没有发生任何变化。 </p>
+<h3 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h3><p><code>delete</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">delete</span> <span class="token keyword">from</span> 表名 <span class="token punctuation">[</span><span class="token keyword">where</span> 条件<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果删除表中所有数据 <code>truncate table</code>命令快得多</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">truncate</span> <span class="token keyword">table</span> bable name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><p><code>暂时略......</code></p>
+<br/>
+
+
+
+<blockquote>
+<p><code>未完待续</code></p>
+</blockquote>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>落花生</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://dbin.top/2021/10/14/SQL/SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" title="SQL基础语法">https://dbin.top/2021/10/14/SQL/SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/10/19/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/TcpAndUdp/" rel="prev" title="初识TCP/UDP"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">初识TCP/UDP</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/10/11/c++/cpp%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8/" rel="next" title="c++列表初始化与初始化列表"><span class="post-nav-text">c++列表初始化与初始化列表</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>··留下你的足迹(恭请指正)··</span><br></div><div id="waline"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js", () => {
+  const walineConfig = {"enable":true,"serverURL":"https://myblog-lhtbgw7ay-1512857220-qqcom.vercel.app/","comment":true,"el":"#waline","lang":"zh-CN"}
+  walineConfig.path = "/2021/10/14/SQL/SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+  new Waline(walineConfig)
+}, window.Waline);</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 – 2022 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.yunyoujun.cn/" title="网站源码来自"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 落花生</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.0.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.2</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-06-18T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#4fcde3" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><script>const date = new Date();
+const today = (date.getMonth() + 1) + "-" + date.getDate()
+const mourn_days = ["4-4","5-12","9-18"]
+if (mourn_days.includes(today)) {
+  document.documentElement.style.filter = "grayscale(1)";
+}</script></div></body></html>
