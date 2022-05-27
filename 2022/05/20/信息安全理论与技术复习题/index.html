@@ -1,12 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#4fcde3"><meta name="author" content="落花生"><meta name="copyright" content="落花生"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>信息安全理论与技术复习题 | 唯落花生</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
-  [".post-card",".post-content img"].forEach((target)=> {
-    ScrollReveal().reveal(target);
-  })
-});
-</script><link rel="icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#4fcde3"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
-    const Yun = window.Yun || {};
-    window.CONFIG = {"hostname":"dbin.top","root":"/","title":["落","花","生","的","小","站"],"version":"1.6.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.json"},"fireworks":{"colors":["0, 0, 0","255, 255, 255","128, 128, 128","201, 4, 17"]}};
-  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/null"><script src="//at.alicdn.com/t/font_2648851_os7f9jxepo.js" async></script><meta name="description" content="这是一个信息安全理论与技术的复习文档。">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon.png">
+  <link rel="icon" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#42826d99">
+  <meta name="author" content="落花生">
+  <meta name="keywords" content=" ">
+  
+    <meta name="description" content="这是一个信息安全理论与技术的复习文档。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="信息安全理论与技术复习题">
 <meta property="og:url" content="https://dbin.top/2022/05/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E9%A2%98/index.html">
@@ -20,8 +30,267 @@
 <meta property="article:modified_time" content="2022-05-21T11:39:36.001Z">
 <meta property="article:author" content="落花生">
 <meta property="article:tag" content="Other">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.z4a.net/images/2022/05/20/QQ20220520215225.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="落花生"><img width="96" loading="lazy" src="http://dbins.gitee.io/image/head/head.jpg" alt="落花生"><span class="site-author-status" title="开心每一天">🥰</span></a><div class="site-author-name"><a href="/about/">落花生</a></div><span class="site-name">唯落花生</span><sub class="site-subtitle">improve oneself</sub><div class="site-desciption">花生有个长在枝头的理想吗？</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg></span><span class="site-state-item-count">46</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fenlei"></use></svg></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-biaoqian"></use></svg></span><span class="site-state-item-count">29</span></a></div><a class="site-state-item hty-icon-button" href="/others/index.html" title="others"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shezhi1"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wanmujun@aliyun.com" title="E-Mail" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-icon-test"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:beifen404@gmail.com" title="备用邮箱" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-youxiang4"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E6%A1%83%E5%AD%90" title="Twitter" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="frends" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-men-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="MyGirl" style="color:#FF0000"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">第一章(信息安全基础知识)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.</span> <span class="toc-text">网络安全的主要特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ISO-x2F-OSI%E5%AE%89%E5%85%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">ISO&#x2F;OSI安全体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">安全服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">安全机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">安全管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BD%93%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">网络安全体系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">网络安全体系模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AD%89%E7%BA%A7%E4%B8%8E%E6%A0%87%E5%87%86"><span class="toc-number">1.4.</span> <span class="toc-text">网络信息安全等级与标准</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-TCSEC%E6%A0%87%E5%87%86"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.TCSEC标准</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E5%9B%BD%E6%9C%89%E5%85%B3%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%9A%84%E7%9B%B8%E5%85%B3%E6%A0%87%E5%87%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">我国有关网络信息安全的相关标准</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">第三章  密钥管理技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">密钥类型和组织结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">密钥的类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF"><span class="toc-number">2.2.</span> <span class="toc-text">密钥管理技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">2.2.1.</span> <span class="toc-text">生命周期</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E5%88%86%E9%85%8D%E6%96%B9%E6%A1%88"><span class="toc-number">2.3.</span> <span class="toc-text">密钥分配方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E4%B8%AD%E5%BC%8F%E5%AF%86%E9%92%A5%E5%88%86%E9%85%8D%E6%96%B9%E6%A1%88%EF%BC%88p79-%E9%87%8D%E7%82%B9"><span class="toc-number">2.3.1.</span> <span class="toc-text">集中式密钥分配方案（p79)(重点)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E4%B8%8E%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">3.</span> <span class="toc-text">第四章数字签名与认证技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%91%98%E8%A6%81"><span class="toc-number">3.1.</span> <span class="toc-text">消息摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%91%98%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-number">3.1.1.</span> <span class="toc-text">消息摘要特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="toc-number">3.2.</span> <span class="toc-text">数字签名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.2.1.</span> <span class="toc-text">数字签名的步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">3.3.</span> <span class="toc-text">认证技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-number">3.3.1.</span> <span class="toc-text">认证技术的相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%A0%87%E8%AF%86%E5%92%8C%E9%89%B4%E5%88%AB"><span class="toc-number">3.3.1.1.</span> <span class="toc-text">1.标识和鉴别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E8%AE%A4%E8%AF%81%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.3.1.2.</span> <span class="toc-text">2.认证信息类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%AE%A4%E8%AF%81%E7%9A%84%E7%94%A8%E9%80%94"><span class="toc-number">3.3.1.3.</span> <span class="toc-text">3.认证的用途</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kerberos%E6%8A%80%E6%9C%AF"><span class="toc-number">3.4.</span> <span class="toc-text">Kerberos技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kerberos%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-number">3.4.1.</span> <span class="toc-text">Kerberos设计目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kerberos%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF-p100"><span class="toc-number">3.4.2.</span> <span class="toc-text">Kerberos设计思路(p100)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-PKI%E6%8A%80%E6%9C%AF"><span class="toc-number">4.</span> <span class="toc-text">第五章 PKI技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PKI%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.</span> <span class="toc-text">PKI基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PKI%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0"><span class="toc-number">4.1.1.</span> <span class="toc-text">PKI技术概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PKI%E4%B8%BB%E8%A6%81%E7%A0%94%E7%A9%B6%E5%AF%B9%E8%B1%A1%E7%BA%A7%E4%B8%BB%E8%A6%81%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.1.2.</span> <span class="toc-text">PKI主要研究对象级主要服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PKI%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.3.</span> <span class="toc-text">PKI的基本结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6"><span class="toc-number">4.2.</span> <span class="toc-text">数字证书</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">4.2.1.</span> <span class="toc-text">证书的表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E5%86%85%E5%AE%B9"><span class="toc-number">4.2.2.</span> <span class="toc-text">证书内容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PKI%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-number">4.3.</span> <span class="toc-text">PKI应用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">5.</span> <span class="toc-text">第六章 网络攻击与防御技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">5.1.</span> <span class="toc-text">漏洞与信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E6%8A%80%E6%9C%AF-%E4%B8%89%E7%A7%8D"><span class="toc-number">5.1.1.</span> <span class="toc-text">扫描技术 三种</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%97%85%E6%8E%A2%E6%8A%80%E6%9C%AF"><span class="toc-number">5.1.2.</span> <span class="toc-text">嗅探技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%8A%80%E6%9C%AF"><span class="toc-number">5.1.3.</span> <span class="toc-text">其他信息收集技术</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%AC%BA%E9%AA%97"><span class="toc-number">5.2.</span> <span class="toc-text">网络欺骗</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-ARP%E6%AC%BA%E9%AA%97"><span class="toc-number">5.2.1.</span> <span class="toc-text">4.ARP欺骗</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E7%BD%91%E7%BB%9C%E6%89%A7%E6%B3%95%E5%AE%98%E5%8E%9F%E7%90%86"><span class="toc-number">5.2.1.1.</span> <span class="toc-text">3网络执法官原理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%99%A8%E6%BA%A2%E5%87%BA%E6%94%BB%E5%87%BB"><span class="toc-number">5.2.2.</span> <span class="toc-text">缓冲器溢出攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.2.2.1.</span> <span class="toc-text">缓冲区溢出的类型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB"><span class="toc-number">5.2.3.</span> <span class="toc-text">拒绝服务攻击</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://dbin.top/2022/05/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E9%A2%98/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="落花生"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="唯落花生"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">信息安全理论与技术复习题</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2022-05-20 09:13:39" itemprop="dateCreated datePublished" datetime="2022-05-20T09:13:39+08:00">2022-05-20</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-05-21 19:39:36" itemprop="dateModified" datetime="2022-05-21T19:39:36+08:00">2022-05-21</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">11.8k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">40m</span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2022/05/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E9%A2%98/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Other/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Other</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/Other/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Other</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#4fcde3;"><p>这是一个信息安全理论与技术的复习文档。</p>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.z4a.net/images/2022/05/20/QQ20220520215225.png">
+  
+  
+  
+  <title>信息安全理论与技术复习题 - 唯落花生</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2648851_os7f9jxepo.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbin.top","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"uKOOPQNyiz8V0YbQ26C0rPDJ-MdYXbMMI","app_key":"VqFAs3nVmnRh60W7DUaprXW1","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>唯落花生</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-guidang"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-fenlei"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-biaoqian_huaban1"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息安全理论与技术复习题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-20 09:13" pubdate>
+          2022年5月20日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          15k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">信息安全理论与技术复习题</h1>
+            
+            <div class="markdown-body">
+              
+              <p>这是一个信息安全理论与技术的复习文档。</p>
 <span id="more"></span>
 
 <h2 id="第一章-信息安全基础知识"><a href="#第一章-信息安全基础知识" class="headerlink" title="第一章(信息安全基础知识)"></a>第一章(信息安全基础知识)</h2><h3 id="网络安全的主要特征"><a href="#网络安全的主要特征" class="headerlink" title="网络安全的主要特征"></a>网络安全的主要特征</h3><p><font color='red'>(1)保密性</font>：指网络上的信息不泄露给非授权用户、实体或过程，或只供合法用户使用的特性。<br>工<br><font color='red'>(2)完整性：</font>指信息在存储或传输过程中保持不被修改、不被破坏和丢失的特性，也即未经授权不能进行改变的特性。<br><font color='red'>(3)可用性：</font>指当需要时应能存取所需的信息，也即可以被授权实体访问并按需求使用的特性。网络环境下的拒绝服务、破坏网络和有关系统的正常运行等都属于对可用性的攻击。<br>(4)可控性：指对信息的传播及内容具有控制的能力。</p>
@@ -30,7 +299,7 @@
 <h4 id="安全管理"><a href="#安全管理" class="headerlink" title="安全管理"></a>安全管理</h4><p>OSl安全体系结构的第三个主要部分就是安全管理。它的主要内容是实施一系列的安全政策，对系统和网络上的操作进行管理。它包括三部分内容：系统安全管理、安全服务管理和安全机制管理。下面分别予以介绍。<br><font color='red'>1)系统安全管理</font><br>系统安全管理涉及整体OSI安全环境的管理，包括总体安全策略的管理、OSI安全环境之间的安全信息交换、安全服务管理和安全机制管理的交互作用、安全事件的管理、安全审计管理和安全恢复管理。<br><font color='red'>2)安全服务管理</font><br>安全服务管理涉及特定安全服务的管理，其中包括对某种安全服务定义其安全目标、指定安全服务可使用的安全机制、通过适当的安全机制管理及调动需要的安全机制、系统安全管理以及安全机制管理相互作用。<br><font color='red'>3)安全机制管理</font><br>安全机制管理涉及特定的安全机制的管理，其中包括密钥管理、加密管理、数字签名管理、访问控制管理、数据完整性管理、鉴别管理、业务流填充管理和公证管理。</p>
 <p>除此以外，OSI安全管理涉及OSI管理系统本身的安全，包括OSI管理协议的安全和OSI管理信息交换的安全等。</p>
 <h3 id="网络安全体系"><a href="#网络安全体系" class="headerlink" title="网络安全体系"></a>网络安全体系</h3><h4 id="网络安全体系模型"><a href="#网络安全体系模型" class="headerlink" title="网络安全体系模型"></a>网络安全体系模型</h4><p><font color='red'>1)PDRR模型</font><br>PDRR模型是由美国国防部提出的，PDRR是 Protection 、Detection、Recovery、Response的缩写。PDRR改进了传统的只有保护的单一安全防御思想，强调信息安全保障的四个重要环节。保护( Protection )的内容主要有加密机制、数字签名机制、访问控制机制、认证机制、信息隐藏、防火墙技术等。检测(Detection)的内容主要有入侵检测、系统脆弱性检测、数据完整性检测、攻击性检测等。恢复(Recovery)的内容主要有数据备份、数据修复、系统恢复等。响应(Response)的内容主要有应急策略、应急机制、应急手段、人侵过程分析及安全状态评估等。<br><font color='red'>2)P<sup>2</sup>DR模型</font><br>20世纪90年代末，美国国际互联网安全系统公司(ISS)提出了自适应网络安全模型ANSM(Adaptive Network Security Model)，并联合其他厂商组成ANS联盟，试图在此基础上建立网络安全的标准。该模型可量化、也可由数学家证明，是基于时间的安全模型，亦称为P’DR(Policy Protection Detection Response)。模型的基本描述为<font color='blue'>安全＝风险分析＋执行策略＋系统实施＋漏洞监测＋实时响应</font><br>P<sup>2</sup>DR模型是在整体的安全策略的控制和指导下，在综合运用防护工具(如防火墙、操作系统身份认证、加密等手段）的同时，利用检测工具（如漏洞评估、入侵检测等系统）了解和评估系统的安全状态，将系统调整到“最安全”和“风险最低”的状态。<font color='blue'>Policy(安全策略)、 Protection （防护）、Detection（检测）和Response（响应）</font>组成了一个完整的、动态的安全循环，在安全策略的指导下保证信息系统的安全。</p>
-<p><img src="https://www.z4a.net/images/2022/05/20/QQ20220520215225.png" loading="lazy"></p>
+<p><img src="https://www.z4a.net/images/2022/05/20/QQ20220520215225.png" srcset="/img/loading.gif" lazyload></p>
 <p>P<sup>2</sup>DR模型有自己的理论体系，以数学模型作为其论述基础——基于时间的安全理论(Time Based Security)。该理论的最基本原理为：信息安全相关的所有活动，无论是攻击行为、防护行为、检测行为和响应行为等都要消耗时间，因此可以用时间来衡量一个体系的安全性和安全能力。<br>作为一个防护体系，当入侵者要发起攻击时，每一步都需要花费时间。当然攻击成功花费的时间就是安全体系提供的防护时间<font color='red'>Pt</font>； 在入侵发生的同时，检测系统也在发挥作用，检测到入侵行为也要花费时间——检测时间<font color='red'>Dt</font>；在检测到入侵后，系统会做出应有的响应动作，这也要花费时间——响应时间<font color='red'>Rt</font>。P<sup>2</sup>DR模型就可以用以下两个典型的数学公式来表达安全的要求：<br><font color='red'>Pt&gt;Dt+Rt(公式1)</font><br><font color='blue'>Pt：系统为了保护安全目标设置各种保护后的防护时间</font>；或者理解为在这样的保护方式下，黑客（入侵者）攻击安全目标所花费的时间。<br><font color='blue'>Dt：从入侵者开始发动入侵开始，到系统能够检测到入侵行为所花费的时间。</font><br><font color='blue'>Rt：从发现入侵行为开始，到系统能够做出足够的响应，将系统调整到正常状态所花费的时间。</font><br>那么，针对于需要保护的安全目标，如果满足公式1，即防护时间大于检测时间加上响应时间，则说明在入侵者危害安全目标之前就能够被检测到并及时处理。<br><font color='red'>Et&#x3D;Dt+Rt(公式2)</font><br>公式2的前提是假设防护时间Pt&#x3D;0。这种假设对Web Server这样的系统可以成立。</p>
 <p><font color='blue'>Dt：从入侵者破坏了安全目标开始，到系统能够检测到破坏行为所花费的时间。</font><br><font color='blue'>Rt：从发现遭到破坏开始，到系统能够做出足够的响应，将系统调整到正常状态所花费的时间。</font>例如，对Web Server被破坏的页面进行恢复。<br>那么，<font color='blue'>Dt与Rt的和就是该安全目标系统的暴露时间Et。针对需要保护的安全目标，<font color='red'>Et越小系统就越安全。</font></font><br>通过上面两个公式的描述，实际上为“安全”给出了一个全新的定义：<font color='blue'>“及时地检测和响应就是安全”，“及时地检测和恢复就是安全”。</font>而且，这样的定义为安全问题的解决给出了明确的方向：提高系统的防护时间Pt，降低检测时间Dt和响应时间Rt。</p>
 <h3 id="网络信息安全等级与标准"><a href="#网络信息安全等级与标准" class="headerlink" title="网络信息安全等级与标准"></a>网络信息安全等级与标准</h3><h4 id="1-TCSEC标准"><a href="#1-TCSEC标准" class="headerlink" title="1.TCSEC标准"></a>1.TCSEC标准</h4><p>为了实现对网络安全的定性评价，美国国防部在1985年制定了可信任计算机标准评估准则(TCSEC)，它已经成为了现行的网络安全标准。<br>在TCSEC中，美国国防部按处理信息的等级和应采用的响应措施，将计算机安全从高到低分为<font color='red'>A、B、C、D四类七个级别，共27条评估准则</font>。其中：<font color='blue'>D级为无保护级、C级为自主保护级(C1级为机动安全保护，C2级为控制访问保护)、B级为强制保护级(B1级为标签安全，B2级为结构保护，B3级为安全域)、A级为验证保护级</font>。随着安全等级的提高，系统的可信度随之增加，风险逐渐减少。</p>
@@ -42,7 +311,7 @@
 <h3 id="密钥分配方案"><a href="#密钥分配方案" class="headerlink" title="密钥分配方案"></a>密钥分配方案</h3><h4 id="集中式密钥分配方案（p79-重点"><a href="#集中式密钥分配方案（p79-重点" class="headerlink" title="集中式密钥分配方案（p79)(重点)"></a>集中式密钥分配方案（p79)<font color='red'>(重点)</font></h4><h2 id="第四章数字签名与认证技术"><a href="#第四章数字签名与认证技术" class="headerlink" title="第四章数字签名与认证技术"></a>第四章数字签名与认证技术</h2><h3 id="消息摘要"><a href="#消息摘要" class="headerlink" title="消息摘要"></a>消息摘要</h3><h4 id="消息摘要特点"><a href="#消息摘要特点" class="headerlink" title="消息摘要特点"></a>消息摘要特点</h4><p>当输入相同的明文数据，经过相同的消息摘要算法会得到相同的、唯一的一组数据，这组数据就是该明文的消息摘要。消息摘要不是加密明文，所以它不应该是加密算法，消息摘要是保证明文无法篡改、完整性的一种算法。消息摘要的主要特点有：<br><font color='blue'>(1)</font>无论输入的消息有多长，计算出来的消息摘要的长度总是固定的。例如应用MD5算法输出的消息摘要为128 bit，用SHA-1算法输出的消息摘要为160 bit，SHA-1的变体可以产生192 bit和256 bit的消息摘要。一般认为，摘要的最终输出越长，该摘要算法就越安全。<br><font color='blue'>(2)</font>消息摘要看起来是“随机的”。这些bit看上去是胡乱地杂凑在一起的。可以用大量的输入来检验其输出是否相同，一般来说，不同的输入会有不同的输出，而且输出的摘要消息可以通过随机性检验。但是，一个摘要并不是真正随机的，因为用相同的算法对相同的消息求两次摘要，其结果必然相同；而若摘要是真正随机的，则无论如何都是无法重现的。因此消息摘要是“伪随机的”。<br><font color='blue'>(3)</font>一般地，只要输入的消息不同，对其进行摘要以后产生的摘要消息也必不相同；但相同的输入必会产生相同的输出。这正是好的消息摘要算法所具有的性质：输入改变了，输出也就改变了；两条相似的消息的摘要却不相近，甚至会大相径庭。<br><font color='blue'>(4)</font>消息摘要函数是无陷门的单向函数，即只能进行正向的消息摘要，而无法从摘要中恢复出任何的消息，甚至根本就找不到任何与原信息相关的信息。当然，可以采用强力</p>
 <h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><h4 id="数字签名的步骤"><a href="#数字签名的步骤" class="headerlink" title="数字签名的步骤"></a>数字签名的步骤</h4><p><font color='blue'>(1)</font>使用单向散列算法对原始信息进行计算，得到一个固定长度的消息摘要(Message Digest，实际上是一个固定长度的字符串)。当然，不同的信息所得到的消息摘要各不相同，但对相同的信息生成的消息摘要却是唯一的。同时，单向散列算法还保证了只要改动信息中的任何一位，重新计算出来的消息摘要与原先的值是不同的，这样实际上就保证了信息的不可更改性。<br><font color='blue'>(2)</font>发送方用自己的私钥加密生成的消息摘要，生成发送方的数字签名。<br><font color='blue'>(3)</font>发送方把这个数字签名作为要发送信息的附件和明文信息一同发送给接收方。<br><font color='blue'>(4)</font>接收方首先用发方的公钥对数字签名进行解密，随后使用相同的单向散列函数来计算明文信息，得到消息摘要。<br><font color='blue'>(5)</font>如果计算出来的消息摘要和发方发送给他的消息摘要(通过解密数字签名得到的)相同，接收方就能确认数字签名确实是发送方的，否则就认为收到的信息是伪造的或中途被篡改的。</p>
 <p>示意图</p>
-<p><img src="https://www.z4a.net/images/2022/05/21/QQ20220521171941.png" alt="示意图" loading="lazy"></p>
+<p><img src="https://www.z4a.net/images/2022/05/21/QQ20220521171941.png" srcset="/img/loading.gif" lazyload alt="示意图"></p>
 <h3 id="认证技术"><a href="#认证技术" class="headerlink" title="认证技术"></a>认证技术</h3><h4 id="认证技术的相关概念"><a href="#认证技术的相关概念" class="headerlink" title="认证技术的相关概念"></a>认证技术的相关概念</h4><h5 id="1-标识和鉴别"><a href="#1-标识和鉴别" class="headerlink" title="1.标识和鉴别"></a>1.标识和鉴别</h5><p>认证就是一个实体向另外一个实体证明其所具有的某种特性的过程。在认证过程中，要用到两种基本安全技术，即标识( identification )技术和鉴别( authentication )技术。下面分别叙述。<br>(1)标识。标识用来代表实体的身份，确保实体在系统中的唯一性和可辨认性，一般用名称和标识符(ID)来表示。通过唯一标识符，系统可以识别出访问系统的每个用户。例如，在网络环境中，网络管理员常用IP地址、网卡地址作为计算机用户的标识。<br>(2)鉴别。鉴别是指对实体身份的真实性进行识别。鉴别的依据是用户所拥有的特殊信息或实物，这些信息是秘密的，其他用户都不能拥有。系统根据识别和鉴别的结果，来决定用户访问资源的能力。例如，通过IP地址的识别，网络管理员可以确定Web访问是内部用户访问还是外部用户访问。</p>
 <h5 id="2-认证信息类型"><a href="#2-认证信息类型" class="headerlink" title="2.认证信息类型"></a><font color='red'>2.认证信息类型</font></h5><p>常用的鉴别信息主要有四种：<br>(1)所知道的秘密，如用户口令、PIN(Personal Identification Number)。<br>(2)所拥有的实物，一般是不可伪造的设备，如智能卡、磁卡等。<br>(3)生物特征信息，如指纹、声音、视网膜等。<br>(4)上下文信息，就是认证实体所处的环境信息、地理位置、时间等，例如IP地址等。</p>
 <h5 id="3-认证的用途"><a href="#3-认证的用途" class="headerlink" title="3.认证的用途"></a>3.认证的用途</h5><p>认证的主要用途有三方面：<br>(1)验证网络资源访问者的身份，给网络系统访问授权提供支持服务。<br>(2)验证网络信息的发送者和接收者的真实性，防止假冒。<br>(3)验证网络信息的完整性，防止篡改、重放或延迟。</p>
@@ -54,7 +323,7 @@
 <h4 id="PKI的基本结构"><a href="#PKI的基本结构" class="headerlink" title="PKI的基本结构"></a>PKI的基本结构</h4><p>PKI作为一组在分布式计算系统中利用公钥技术和X. 509证书所提供的安全服务，企业或组织可利用相关产品建立安全域，并在其中发布密钥和证书。在安全域内，PKI管理加密密钥和证书的发布，并提供诸如密钥管理（包括密钥更新、密钥恢复和密钥委托等）、证书管理(包括证书产生和撤销等)和策略管理等。PKI产品也允许一个组织通过证书级别或直接交叉认证等方式来同其他安全域建立信任关系。这些服务和信任关系不能局限于独立的网络之内，而应建立在网络之间和Internet之上，为电子商务和网络通信提供安全保障，所以具有互操作性的结构化和标准化技术成为PKI的核心。<br>PKI在实际应用中是一套软硬件系统和安全策略的集合，它提供了一整套安全机制，使用户在不知道对方身份或分布地很广的情况下，以证书为基础，通过一系列的信任关系进行通信和电子商务交易。</p>
 <p>在PKI技术支持下，一个获取其他用户公钥的简化过程大致如下：<br>(1) Bob生成自己的公私钥对，向注册机构(Register Authority，RA)提出公钥注册申请。<br>(2)在决定给Bob签发数字证书之前，RA首先审查用户的申请资格，并决定是否同意CA给其签发数字证书。一旦用户通过RA的审查，则RA向CA提出证书请求。<br>(3)CA为Bob签发证书，证书包含Bob的身份信息和公钥，以及CA对证书的签名结果。<br>(4)当Alice需要与Bob进行保密通信时，就可以在证书发布系统查找Bob的证书，然后使用CA的公钥来验证证书上的数字签名是否有效，确保证书不是攻击者伪造的。<br>(5)验证证书后，Alice就可以使用证书上所包含的公钥与Bob进行保密通信和身份鉴别等。</p>
 <p>一个典型的PKI系统如图所示，其中包括PKI策略、软硬件系统、<font color='red'>证书认证中心CA、注册机构RA</font>)证书发布系统和PKI应用等。</p>
-<p><img src="https://www.z4a.net/images/2022/05/21/QQ20220521182919.png" loading="lazy"></p>
+<p><img src="https://www.z4a.net/images/2022/05/21/QQ20220521182919.png" srcset="/img/loading.gif" lazyload></p>
 <p>证书撤销列表(<font color='blue'>CRL</font>)</p>
 <p>认证机构CA签发证书来为用户的身份和公钥进行捆绑，可是在现实物理世界中，因种种原因，还必须存在一种机制来撤销这种捆绑关系，将现行的证书撤销。这种撤销的原因通常有：用户身份姓名的改变、私钥被窃或泄露、用户与其所属企业关系变更等。这样就必须存在一种方法警告其他用户不要再使用这个公钥。在PKI中，这种警告机制被称做证书撤销，所使用的手段为证书撤销列表或称CRL。<br>在这里，证书撤销信息更新和发布的频率是非常重要的。一定要确定合适的间隔频率来发布证书撤销信息，并且要将这些信息及时地散发给那些正在使用这些证书的用户。在某些情况下，这种间隔可能相当长，如几个小时甚至几天一次；而在某些场合，即便几分钟的间隔都是不能接受的。两次证书撤销信息发布之间的间隔被称为撤销延迟。撤销延迟必须作为证书策略的一部分来规定，在给定一个应用领域中，其撤销措施必须遵照相应的策略。</p>
 <p><font color='red'>挂起状态的证书也在CRL中</font></p>
@@ -97,48 +366,451 @@
 <p><font color='red'><strong>3.其他溢出类型</strong></font><br>其他溢出类型中，最典型的就是整型溢出。整型溢出是针对不同的系统中，对整型数定义的漏洞提出的。例如最容易出问题的是由用户提交的用作长度变量的整型数，对其他部分数据的安全要求往往集中在上面。用作长度的变量一般要求使用无符号整型数。在32位系统中，无符号整型数（unsigned int）的范围是0～0xfffffff。不仅要保证用户提交的数据在此范围内，还要保证对用户数据进行运算并存储后仍然在此范围内。</p>
 <p>整形一处造出溢出原因角度分存储溢出，计算溢出，符号溢出。</p>
 <h4 id="拒绝服务攻击"><a href="#拒绝服务攻击" class="headerlink" title="拒绝服务攻击"></a><font color='red'>拒绝服务攻击</font></h4><p><font color='blue'>拒绝服务攻击是指攻击者想办法让目标机器停止提供服务或资源访问，是攻击者常用的攻击手段之一</font>。这些被利用的目标资源包括磁盘空间、内存、进程甚至网络带宽，从而阻止正常用户的访问。</p>
-</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>落花生</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://dbin.top/2022/05/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E9%A2%98/" title="信息安全理论与技术复习题">https://dbin.top/2022/05/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E9%A2%98/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/2022/03/31/SpringBoot%E4%BD%BF%E7%94%A8HTTPS/" rel="next" title="SpringBoot使用HTTPS和HTTP2.0"><span class="post-nav-text">SpringBoot使用HTTPS和HTTP2.0</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 – 2022 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.yunyoujun.cn/" title="网站源码来自"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 落花生</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.2</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
-  setTimeout(blog_live_time, 1000);
-  const start = new Date('2021-06-18T00:00:00');
-  const now = new Date();
-  const timeDiff = (now.getTime() - start.getTime());
-  const msPerMinute = 60 * 1000;
-  const msPerHour = 60 * msPerMinute;
-  const msPerDay = 24 * msPerHour;
-  const passDay = Math.floor(timeDiff / msPerDay);
-  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
-  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
-  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
-  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
-}
-blog_live_time();
-</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#4fcde3" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
-  // Handle and trigger popup window
-  document.querySelector(".popup-trigger").addEventListener("click", () => {
-    document.querySelector(".popup").classList.add("show");
-    setTimeout(() => {
-      document.querySelector(".search-input").focus();
-    }, 100);
-  });
 
-  // Monitor main search box
-  const onPopupClose = () => {
-    document.querySelector(".popup").classList.remove("show");
-  };
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
-  document.querySelector(".popup-btn-close").addEventListener("click", () => {
-    onPopupClose();
-  });
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Other/" class="category-chain-item">Other</a>
+  
+  
 
-  window.addEventListener("keyup", event => {
-    if (event.key === "Escape") {
-      onPopupClose();
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Other/">#Other</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息安全理论与技术复习题</div>
+      <div>https://dbin.top/2022/05/20/信息安全理论与技术复习题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>落花生</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月20日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/24/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E4%BB%A3%E7%A0%81/" title="有意思的代码">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">有意思的代码</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/31/SpringBoot%E4%BD%BF%E7%94%A8HTTPS/" title="SpringBoot使用HTTPS和HTTP2.0">
+                        <span class="hidden-mobile">SpringBoot使用HTTPS和HTTP2.0</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
   });
-});
-</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><script>const date = new Date();
-const today = (date.getMonth() + 1) + "-" + date.getDate()
-const mourn_days = ["4-4","5-12","9-18"]
-if (mourn_days.includes(today)) {
-  document.documentElement.style.filter = "grayscale(1)";
-}</script></div></body></html>
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

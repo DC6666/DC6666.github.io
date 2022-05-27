@@ -1,12 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#4fcde3"><meta name="author" content="落花生"><meta name="copyright" content="落花生"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>Python学习笔记 | 唯落花生</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
-  [".post-card",".post-content img"].forEach((target)=> {
-    ScrollReveal().reveal(target);
-  })
-});
-</script><link rel="icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#4fcde3"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
-    const Yun = window.Yun || {};
-    window.CONFIG = {"hostname":"dbin.top","root":"/","title":["落","花","生","的","小","站"],"version":"1.6.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.json"},"fireworks":{"colors":["0, 0, 0","255, 255, 255","128, 128, 128","201, 4, 17"]}};
-  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/null"><script src="//at.alicdn.com/t/font_2648851_os7f9jxepo.js" async></script><meta name="description" content="Python 初级学习 仅为学习记录">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon.png">
+  <link rel="icon" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#42826d99">
+  <meta name="author" content="落花生">
+  <meta name="keywords" content=" ">
+  
+    <meta name="description" content="Python 初级学习 仅为学习记录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python学习笔记">
 <meta property="og:url" content="https://dbin.top/2021/07/01/python/Python/index.html">
@@ -17,158 +27,936 @@
 <meta property="article:modified_time" content="2022-02-13T13:31:47.636Z">
 <meta property="article:author" content="落花生">
 <meta property="article:tag" content="Python">
-<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="落花生"><img width="96" loading="lazy" src="http://dbins.gitee.io/image/head/head.jpg" alt="落花生"><span class="site-author-status" title="开心每一天">🥰</span></a><div class="site-author-name"><a href="/about/">落花生</a></div><span class="site-name">唯落花生</span><sub class="site-subtitle">improve oneself</sub><div class="site-desciption">花生有个长在枝头的理想吗？</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg></span><span class="site-state-item-count">46</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fenlei"></use></svg></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-biaoqian"></use></svg></span><span class="site-state-item-count">29</span></a></div><a class="site-state-item hty-icon-button" href="/others/index.html" title="others"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shezhi1"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wanmujun@aliyun.com" title="E-Mail" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-icon-test"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:beifen404@gmail.com" title="备用邮箱" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-youxiang4"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E6%A1%83%E5%AD%90" title="Twitter" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="frends" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-men-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="MyGirl" style="color:#FF0000"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python"><span class="toc-number">1.</span> <span class="toc-text">Python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.1.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#int%E3%80%81float%E3%80%81str"><span class="toc-number">1.2.</span> <span class="toc-text">int、float、str</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">1.3.</span> <span class="toc-text">python关键词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BF%90%E7%AE%97-%E5%92%8C"><span class="toc-number">1.4.</span> <span class="toc-text">字符串的运算(*和+)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.5.</span> <span class="toc-text">类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#turtle%E6%A8%A1%E5%9D%97"><span class="toc-number">1.7.</span> <span class="toc-text">turtle模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%9B%E5%8C%96"><span class="toc-number">1.7.1.</span> <span class="toc-text">泛化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%EF%BC%88and-%E3%80%81or-%E5%92%8C-not%E3%80%82%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">逻辑运算（and 、or 和 not。）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if%E3%80%81else%E3%80%81elif"><span class="toc-number">1.9.</span> <span class="toc-text">if、else、elif</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time%E6%A8%A1%E5%9D%97"><span class="toc-number">1.10.</span> <span class="toc-text">time模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">1.11.</span> <span class="toc-text">返回值</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://dbin.top/2021/07/01/python/Python/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="落花生"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="唯落花生"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Python学习笔记</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-07-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-01T00:00:00+08:00">2021-07-01</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-02-13 21:31:47" itemprop="dateModified" datetime="2022-02-13T21:31:47+08:00">2022-02-13</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">1.3k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">6m</span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2021/07/01/python/Python/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:#007EFF" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/" style="--text-color:#28d8f7" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/Python/" style="--text-color:#3776ab"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Python</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#4fcde3;"><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><blockquote>
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Python学习笔记 - 唯落花生</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2648851_os7f9jxepo.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbin.top","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"uKOOPQNyiz8V0YbQ26C0rPDJ-MdYXbMMI","app_key":"VqFAs3nVmnRh60W7DUaprXW1","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>唯落花生</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-guidang"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-fenlei"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-biaoqian_huaban1"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-01 00:00" pubdate>
+          2021年7月1日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python学习笔记</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><blockquote>
 <p>初级学习</p>
 <p>仅为学习记录</p>
 </blockquote>
 <span id="more"></span>
 
 <p>python2</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span><span class="string">&#x27;hello world!&#x27;</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token string">'hello world!'</span></code></pre></div>
 
 <p>一般</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="number">1</span>)<span class="comment">#输出1</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'hello world!'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment">#输出1</span></code></pre></div>
 
 <p>还可以这样</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%d\n%d\n%d&#x27;</span>%(x, y, z))<span class="comment">#%d(整型)占位数据来源是后面的x,y,z。\n是换行符。</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'%d\n%d\n%d'</span><span class="token operator">%</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#%d(整型)占位数据来源是后面的x,y,z。\n是换行符。</span></code></pre></div>
 
 
 
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span>**<span class="number">2</span> + <span class="number">6</span> <span class="comment">#次方运算</span></span><br><span class="line"><span class="number">42</span></span><br></pre></td></tr></table></figure>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">6</span><span class="token operator">**</span><span class="token number">2</span> <span class="token operator">+</span> <span class="token number">6</span> <span class="token comment">#次方运算</span>
+<span class="token number">42</span></code></pre></div>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span> ^ <span class="number">2</span> <span class="comment">#二进制相同位同为1，异为1</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">6</span> <span class="token operator">^</span> <span class="token number">2</span> <span class="token comment">#二进制相同位同为1，异为1</span>
+<span class="token number">4</span></code></pre></div>
 
 <p>值和类型</p>
-<h3 id="int、float、str"><a href="#int、float、str" class="headerlink" title="int、float、str"></a>int、float、str</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">type</span> (<span class="number">2</span>)</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;int &#x27;</span>&gt;</span><br><span class="line"> <span class="built_in">type</span> (<span class="number">42.0</span>)</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;float &#x27;</span>&gt;</span><br><span class="line"> <span class="built_in">type</span> (<span class="string">&#x27;Hello ,␣ World !&#x27;</span>)</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;str &#x27;</span>&gt;</span><br><span class="line"> <span class="built_in">type</span> (<span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;str &#x27;</span>&gt;</span><br><span class="line"> <span class="built_in">type</span> (<span class="string">&#x27;42.0 &#x27;</span>)</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;str &#x27;</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="int、float、str"><a href="#int、float、str" class="headerlink" title="int、float、str"></a>int、float、str</h3><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token builtin">type</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'int '</span><span class="token operator">></span>
+ <span class="token builtin">type</span> <span class="token punctuation">(</span><span class="token number">42.0</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'float '</span><span class="token operator">></span>
+ <span class="token builtin">type</span> <span class="token punctuation">(</span><span class="token string">'Hello ,␣ World !'</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'str '</span><span class="token operator">></span>
+ <span class="token builtin">type</span> <span class="token punctuation">(</span><span class="token string">'2'</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'str '</span><span class="token operator">></span>
+ <span class="token builtin">type</span> <span class="token punctuation">(</span><span class="token string">'42.0 '</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'str '</span><span class="token operator">></span>
+</code></pre></div>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span> ,<span class="number">000</span> ,<span class="number">000</span></span><br><span class="line">(<span class="number">1</span> , <span class="number">0</span> , <span class="number">0</span>) <span class="comment">#将1,000,000当作整型数序列</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token number">1</span> <span class="token punctuation">,</span><span class="token number">000</span> <span class="token punctuation">,</span><span class="token number">000</span>
+<span class="token punctuation">(</span><span class="token number">1</span> <span class="token punctuation">,</span> <span class="token number">0</span> <span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">#将1,000,000当作整型数序列</span></code></pre></div>
 
 <p>赋值语句</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="string">&#x27;And ␣now ␣ for ␣ something ␣ completely ␣ different &#x27;</span></span><br><span class="line">n = <span class="number">17</span></span><br><span class="line">pi = <span class="number">3.141592653589793</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python">message <span class="token operator">=</span> <span class="token string">'And ␣now ␣ for ␣ something ␣ completely ␣ different '</span>
+n <span class="token operator">=</span> <span class="token number">17</span>
+pi <span class="token operator">=</span> <span class="token number">3.141592653589793</span></code></pre></div>
 
 <p>变量名错误</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">76</span> trombones = <span class="string">&#x27;big ␣ parade &#x27;</span></span><br><span class="line">SyntaxError : invalid syntax</span><br><span class="line"> more@ = <span class="number">1000000</span></span><br><span class="line">SyntaxError : invalid syntax</span><br><span class="line"> <span class="keyword">class</span> = <span class="string">&#x27;Advanced ␣ Theoretical ␣ Zymurgy &#x27;</span></span><br><span class="line">SyntaxError : invalid syntax</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token number">76</span> trombones <span class="token operator">=</span> <span class="token string">'big ␣ parade '</span>
+SyntaxError <span class="token punctuation">:</span> invalid syntax
+ more@ <span class="token operator">=</span> <span class="token number">1000000</span>
+SyntaxError <span class="token punctuation">:</span> invalid syntax
+ <span class="token keyword">class</span> <span class="token operator">=</span> <span class="token string">'Advanced ␣ Theoretical ␣ Zymurgy '</span>
+SyntaxError <span class="token punctuation">:</span> invalid syntax</code></pre></div>
 
-<h3 id="python关键词"><a href="#python关键词" class="headerlink" title="python关键词"></a>python关键词</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">False</span> <span class="keyword">class</span> <span class="title class_">finally</span> <span class="keyword">is</span> <span class="keyword">return</span></span><br><span class="line"><span class="literal">None</span> <span class="keyword">continue</span> <span class="keyword">for</span> <span class="keyword">lambda</span> <span class="keyword">try</span></span><br><span class="line"><span class="literal">True</span> <span class="keyword">def</span> <span class="title function_">from</span> <span class="keyword">nonlocal</span> <span class="keyword">while</span></span><br><span class="line"><span class="keyword">and</span> <span class="keyword">del</span> <span class="keyword">global</span> <span class="keyword">not</span> <span class="keyword">with</span></span><br><span class="line"><span class="keyword">as</span> <span class="keyword">elif</span> <span class="keyword">if</span> <span class="keyword">or</span> <span class="keyword">yield</span></span><br><span class="line"><span class="keyword">assert</span> <span class="keyword">else</span> <span class="keyword">import</span> <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">break</span> <span class="keyword">except</span> <span class="keyword">in</span> <span class="keyword">raise</span></span><br></pre></td></tr></table></figure>
+<h3 id="python关键词"><a href="#python关键词" class="headerlink" title="python关键词"></a>python关键词</h3><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token boolean">False</span> <span class="token keyword">class</span> <span class="token class-name">finally</span> <span class="token keyword">is</span> <span class="token keyword">return</span>
+<span class="token boolean">None</span> <span class="token keyword">continue</span> <span class="token keyword">for</span> <span class="token keyword">lambda</span> <span class="token keyword">try</span>
+<span class="token boolean">True</span> <span class="token keyword">def</span> <span class="token keyword">from</span> <span class="token keyword">nonlocal</span> <span class="token keyword">while</span>
+<span class="token keyword">and</span> <span class="token keyword">del</span> <span class="token keyword">global</span> <span class="token keyword">not</span> <span class="token keyword">with</span>
+<span class="token keyword">as</span> <span class="token keyword">elif</span> <span class="token keyword">if</span> <span class="token keyword">or</span> <span class="token keyword">yield</span>
+<span class="token keyword">assert</span> <span class="token keyword">else</span> <span class="token keyword">import</span> <span class="token keyword">pass</span>
+<span class="token keyword">break</span> <span class="token keyword">except</span> <span class="token keyword">in</span> <span class="token keyword">raise</span></code></pre></div>
 
-<h3 id="字符串的运算-和"><a href="#字符串的运算-和" class="headerlink" title="字符串的运算(*和+)"></a>字符串的运算(*和+)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> first = <span class="string">&#x27;throat &#x27;</span></span><br><span class="line"> second = <span class="string">&#x27;warbler &#x27;</span></span><br><span class="line"> first + second</span><br><span class="line">throatwarbl</span><br><span class="line"><span class="string">&#x27;Spam&#x27;</span>*<span class="number">3</span></span><br><span class="line"><span class="string">&#x27;SpamSpamSpam&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串的运算-和"><a href="#字符串的运算-和" class="headerlink" title="字符串的运算(*和+)"></a>字符串的运算(*和+)</h3><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> first <span class="token operator">=</span> <span class="token string">'throat '</span>
+ second <span class="token operator">=</span> <span class="token string">'warbler '</span>
+ first <span class="token operator">+</span> second
+throatwarbl
+<span class="token string">'Spam'</span><span class="token operator">*</span><span class="token number">3</span>
+<span class="token string">'SpamSpamSpam'</span></code></pre></div>
 
 <h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>Python 提供了能够将值从一种类型转换为另一种类型的内建函数。函数 int 接受任意<br>值，并在其能做到的情况下，将该值转换成一个整型数，否则会报错：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">int</span> (<span class="string">&#x27;32 &#x27;</span>)</span><br><span class="line"><span class="number">32</span></span><br><span class="line"> <span class="built_in">int</span> (<span class="string">&#x27;Hello &#x27;</span>)</span><br><span class="line">ValueError : invalid literal <span class="keyword">for</span> <span class="built_in">int</span> () : Hello</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token builtin">int</span> <span class="token punctuation">(</span><span class="token string">'32 '</span><span class="token punctuation">)</span>
+<span class="token number">32</span>
+ <span class="token builtin">int</span> <span class="token punctuation">(</span><span class="token string">'Hello '</span><span class="token punctuation">)</span>
+ValueError <span class="token punctuation">:</span> invalid literal <span class="token keyword">for</span> <span class="token builtin">int</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> Hello</code></pre></div>
 
 <p>int 能将浮点数转换为整型数，但是它并不进行舍入；只是截掉了小数点部分：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">int</span> (<span class="number">3.99999</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"> <span class="built_in">int</span>(−<span class="number">2.3</span>)</span><br><span class="line">−<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token builtin">int</span> <span class="token punctuation">(</span><span class="token number">3.99999</span><span class="token punctuation">)</span>
+<span class="token number">3</span>
+ <span class="token builtin">int</span><span class="token punctuation">(</span>−<span class="token number">2.3</span><span class="token punctuation">)</span>
+−<span class="token number">2</span></code></pre></div>
 
 <p>float 可以将整型数和字符串转换为浮点数:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">float</span> (<span class="number">32</span>)</span><br><span class="line"><span class="number">32.0</span></span><br><span class="line"> <span class="built_in">float</span> (<span class="string">&#x27;3.14159 &#x27;</span>)</span><br><span class="line"><span class="number">3.14159</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token builtin">float</span> <span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span>
+<span class="token number">32.0</span>
+ <span class="token builtin">float</span> <span class="token punctuation">(</span><span class="token string">'3.14159 '</span><span class="token punctuation">)</span>
+<span class="token number">3.14159</span></code></pre></div>
 
 <p>str 可以将其实参转换成字符</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">str</span> (<span class="number">32</span>)</span><br><span class="line"><span class="string">&#x27;32 &#x27;</span></span><br><span class="line"> <span class="built_in">str</span> (<span class="number">3.14159</span>)</span><br><span class="line"><span class="string">&#x27;3.14159 &#x27;</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token builtin">str</span> <span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span>
+<span class="token string">'32 '</span>
+ <span class="token builtin">str</span> <span class="token punctuation">(</span><span class="token number">3.14159</span><span class="token punctuation">)</span>
+<span class="token string">'3.14159 '</span></code></pre></div>
 
 <h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><p>函数导入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> math</code></pre></div>
 
 <p>函数使用</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ratio = signal_power / noise_power</span><br><span class="line">decibels = <span class="number">10</span> * math . log10 ( ratio )</span><br><span class="line">radians = <span class="number">0.7</span></span><br><span class="line">height = math . sin ( radians )</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python">ratio <span class="token operator">=</span> signal_power <span class="token operator">/</span> noise_power
+decibels <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">*</span> math <span class="token punctuation">.</span> log10 <span class="token punctuation">(</span> ratio <span class="token punctuation">)</span>
+radians <span class="token operator">=</span> <span class="token number">0.7</span>
+height <span class="token operator">=</span> math <span class="token punctuation">.</span> sin <span class="token punctuation">(</span> radians <span class="token punctuation">)</span></code></pre></div>
 
 <p>增加新函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">print_lyrics</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;ikjsdofijoaiogj&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;joasidjfaf&quot;</span>)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">print_lyrics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"ikjsdofijoaiogj"</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"joasidjfaf"</span><span class="token punctuation">)</span></code></pre></div>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">print_twice</span> ( bruce ) :</span><br><span class="line"><span class="built_in">print</span> ( bruce )</span><br><span class="line"><span class="built_in">print</span> ( bruce )</span><br><span class="line"> print_twice (<span class="string">&#x27;Spam &#x27;</span>)</span><br><span class="line">Spam</span><br><span class="line">Spam</span><br><span class="line"> print_twice (<span class="number">42</span>)</span><br><span class="line"><span class="number">42</span></span><br><span class="line"><span class="number">42</span></span><br><span class="line"> print_twice ( math . pi )</span><br><span class="line"><span class="number">3.14159265359</span></span><br><span class="line"><span class="number">3.14159265359</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">print_twice</span> <span class="token punctuation">(</span> bruce <span class="token punctuation">)</span> <span class="token punctuation">:</span>
+<span class="token keyword">print</span> <span class="token punctuation">(</span> bruce <span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token punctuation">(</span> bruce <span class="token punctuation">)</span>
+ print_twice <span class="token punctuation">(</span><span class="token string">'Spam '</span><span class="token punctuation">)</span>
+Spam
+Spam
+ print_twice <span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>
+<span class="token number">42</span>
+<span class="token number">42</span>
+ print_twice <span class="token punctuation">(</span> math <span class="token punctuation">.</span> pi <span class="token punctuation">)</span>
+<span class="token number">3.14159265359</span>
+<span class="token number">3.14159265359</span></code></pre></div>
 
-<h3 id="turtle模块"><a href="#turtle模块" class="headerlink" title="turtle模块"></a>turtle模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line">bob = turtle.Turtle()</span><br><span class="line"><span class="built_in">print</span>(bob)</span><br><span class="line">turtle.mainloop()</span><br></pre></td></tr></table></figure>
+<h3 id="turtle模块"><a href="#turtle模块" class="headerlink" title="turtle模块"></a>turtle模块</h3><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> turtle
+bob <span class="token operator">=</span> turtle<span class="token punctuation">.</span>Turtle<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>bob<span class="token punctuation">)</span>
+turtle<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bob.pd<span class="comment">#放下笔</span></span><br><span class="line">bob.pu<span class="comment">#抬笔</span></span><br><span class="line">bob.fd(<span class="number">100</span>)<span class="comment">#走100</span></span><br><span class="line">bob.lt(<span class="number">90</span>)<span class="comment">#旋转90度</span></span><br><span class="line">bob.rt(<span class="number">90</span>)<span class="comment">#右转90度</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python">bob<span class="token punctuation">.</span>pd<span class="token comment">#放下笔</span>
+bob<span class="token punctuation">.</span>pu<span class="token comment">#抬笔</span>
+bob<span class="token punctuation">.</span>fd<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token comment">#走100</span>
+bob<span class="token punctuation">.</span>lt<span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token comment">#旋转90度</span>
+bob<span class="token punctuation">.</span>rt<span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token comment">#右转90度</span></code></pre></div>
 
 <p>在pycharm中绘图一闪而过，可以加上</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">turtle.done()</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python">turtle<span class="token punctuation">.</span>done<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
 
 <p>将一部分代码包装在函数里被称作 封装 (encapsulation) 。封装的好处之一，为这些代<br>码赋予一个名字，这充当了某种文档说明。另一个好处是，如果你重复使用这些代码，<br>调用函数两次比拷贝粘贴函数体要更加简洁</p>
-<h4 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">polygon</span> (t , n , length ) :</span><br><span class="line">	angle = <span class="number">360</span> / n  <span class="comment">#python2 中可能会因为整型常量出现偏差，可以用360.0/n,有点像C语言哈哈</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (n ) :</span><br><span class="line">		t . fd ( length )</span><br><span class="line">		t . lt ( angle )</span><br><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line">bob=turtle.Turtle()<span class="comment">#一定要定义bob！！！！！！</span></span><br><span class="line">polygon ( bob , <span class="number">7</span> , <span class="number">70</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h4><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">polygon</span> <span class="token punctuation">(</span>t <span class="token punctuation">,</span> n <span class="token punctuation">,</span> length <span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	angle <span class="token operator">=</span> <span class="token number">360</span> <span class="token operator">/</span> n  <span class="token comment">#python2 中可能会因为整型常量出现偏差，可以用360.0/n,有点像C语言哈哈</span>
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span> <span class="token punctuation">(</span>n <span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		t <span class="token punctuation">.</span> fd <span class="token punctuation">(</span> length <span class="token punctuation">)</span>
+		t <span class="token punctuation">.</span> lt <span class="token punctuation">(</span> angle <span class="token punctuation">)</span>
+<span class="token keyword">import</span> turtle
+bob<span class="token operator">=</span>turtle<span class="token punctuation">.</span>Turtle<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">#一定要定义bob！！！！！！</span>
+polygon <span class="token punctuation">(</span> bob <span class="token punctuation">,</span> <span class="token number">7</span> <span class="token punctuation">,</span> <span class="token number">70</span><span class="token punctuation">)</span></code></pre></div>
 
 <p>下面是一个画弧的程序</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">arc</span> (t,r,angle):</span><br><span class="line">    arc_length = <span class="number">2</span> * math . pi * r * angle / <span class="number">360</span><span class="comment">#周长</span></span><br><span class="line">    n = <span class="built_in">int</span>(arc_length / <span class="number">3</span>) + <span class="number">1</span><span class="comment">#三等分为n</span></span><br><span class="line">    step_length = arc_length / n<span class="comment">#每次作图的长度（路径）</span></span><br><span class="line">    step_angle = angle / n<span class="comment">#角度</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):<span class="comment">#执行n次，前后呼应</span></span><br><span class="line">        t . fd(step_length)</span><br><span class="line">        t . lt(step_angle)</span><br><span class="line">t = turtle.Turtle()</span><br><span class="line">arc(t, <span class="number">100</span>, <span class="number">270</span>)<span class="comment">#t是小乌龟，100是半径，270是弧度</span></span><br><span class="line">turtle.done()</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> math
+<span class="token keyword">import</span> turtle
+
+<span class="token keyword">def</span> <span class="token function">arc</span> <span class="token punctuation">(</span>t<span class="token punctuation">,</span>r<span class="token punctuation">,</span>angle<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    arc_length <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> math <span class="token punctuation">.</span> pi <span class="token operator">*</span> r <span class="token operator">*</span> angle <span class="token operator">/</span> <span class="token number">360</span><span class="token comment">#周长</span>
+    n <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>arc_length <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token comment">#三等分为n</span>
+    step_length <span class="token operator">=</span> arc_length <span class="token operator">/</span> n<span class="token comment">#每次作图的长度（路径）</span>
+    step_angle <span class="token operator">=</span> angle <span class="token operator">/</span> n<span class="token comment">#角度</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment">#执行n次，前后呼应</span>
+        t <span class="token punctuation">.</span> fd<span class="token punctuation">(</span>step_length<span class="token punctuation">)</span>
+        t <span class="token punctuation">.</span> lt<span class="token punctuation">(</span>step_angle<span class="token punctuation">)</span>
+t <span class="token operator">=</span> turtle<span class="token punctuation">.</span>Turtle<span class="token punctuation">(</span><span class="token punctuation">)</span>
+arc<span class="token punctuation">(</span>t<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">270</span><span class="token punctuation">)</span><span class="token comment">#t是小乌龟，100是半径，270是弧度</span>
+turtle<span class="token punctuation">.</span>done<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
 
 <p>地板除法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> minutes = <span class="number">105</span></span><br><span class="line"> minutes / <span class="number">60</span></span><br><span class="line"><span class="number">1.75</span></span><br><span class="line"> minutes = <span class="number">105</span></span><br><span class="line"> hours = minutes // <span class="number">60</span><span class="comment">#直接抛弃小数部分</span></span><br><span class="line"> hours</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> minutes <span class="token operator">=</span> <span class="token number">105</span>
+ minutes <span class="token operator">/</span> <span class="token number">60</span>
+<span class="token number">1.75</span>
+ minutes <span class="token operator">=</span> <span class="token number">105</span>
+ hours <span class="token operator">=</span> minutes <span class="token operator">//</span> <span class="token number">60</span><span class="token comment">#直接抛弃小数部分</span>
+ hours
+<span class="token number">1</span></code></pre></div>
 
 <p>布尔表达式（bool）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">type</span> ( <span class="literal">True</span> )</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;bool &#x27;</span>&gt;</span><br><span class="line"> <span class="built_in">type</span> ( <span class="literal">False</span> )</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;bool &#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token builtin">type</span> <span class="token punctuation">(</span> <span class="token boolean">True</span> <span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'bool '</span><span class="token operator">></span>
+ <span class="token builtin">type</span> <span class="token punctuation">(</span> <span class="token boolean">False</span> <span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'bool '</span><span class="token operator">></span></code></pre></div>
 
-<h3 id="逻辑运算（and-、or-和-not。）"><a href="#逻辑运算（and-、or-和-not。）" class="headerlink" title="逻辑运算（and 、or 和 not。）"></a>逻辑运算（and 、or 和 not。）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">42</span> <span class="keyword">and</span> <span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="逻辑运算（and-、or-和-not。）"><a href="#逻辑运算（and-、or-和-not。）" class="headerlink" title="逻辑运算（and 、or 和 not。）"></a>逻辑运算（and 、or 和 not。）</h3><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">42</span> <span class="token keyword">and</span> <span class="token boolean">True</span>
+<span class="token boolean">True</span></code></pre></div>
 
 <p>严格来讲，逻辑运算符的运算数应该是布尔表达式，但是 Python 并不严格要求。任何<br>非 0 的数字都被解释成为真 ( True )。</p>
-<h3 id="if、else、elif"><a href="#if、else、elif" class="headerlink" title="if、else、elif"></a>if、else、elif</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x &lt; y :<span class="comment">#是“:”,不是“()”</span></span><br><span class="line">	<span class="built_in">print</span> (<span class="string">&#x27;x␣is␣ less ␣ than ␣y&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> x &gt; y :</span><br><span class="line">	<span class="built_in">print</span> (<span class="string">&#x27;x␣is␣ greater ␣ than ␣y&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span> :</span><br><span class="line">	<span class="built_in">print</span> (<span class="string">&#x27;x␣and ␣y␣are ␣ equal &#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="if、else、elif"><a href="#if、else、elif" class="headerlink" title="if、else、elif"></a>if、else、elif</h3><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> x <span class="token operator">&lt;</span> y <span class="token punctuation">:</span><span class="token comment">#是“:”,不是“()”</span>
+	<span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'x␣is␣ less ␣ than ␣y'</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> x <span class="token operator">></span> y <span class="token punctuation">:</span>
+	<span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'x␣is␣ greater ␣ than ␣y'</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span> <span class="token punctuation">:</span>
+	<span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'x␣and ␣y␣are ␣ equal '</span><span class="token punctuation">)</span></code></pre></div>
 
 <p>python提供（允许）一下写法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span> &lt; x &lt; <span class="number">10</span>:</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;x␣is␣a␣ positive ␣single−digit ␣ number .&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> <span class="token number">0</span> <span class="token operator">&lt;</span> x <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">:</span>
+<span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'x␣is␣a␣ positive ␣single−digit ␣ number .'</span><span class="token punctuation">)</span></code></pre></div>
 
 <p>递归</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">countdown</span> ( n ) :</span><br><span class="line">	<span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">		<span class="built_in">print</span> (<span class="string">&#x27;Blastoff !&#x27;</span>)</span><br><span class="line">	<span class="keyword">else</span> :</span><br><span class="line">		<span class="built_in">print</span> (n )</span><br><span class="line">		countdown (n−<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">countdown</span> <span class="token punctuation">(</span> n <span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> n <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+		<span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'Blastoff !'</span><span class="token punctuation">)</span>
+	<span class="token keyword">else</span> <span class="token punctuation">:</span>
+		<span class="token keyword">print</span> <span class="token punctuation">(</span>n <span class="token punctuation">)</span>
+		countdown <span class="token punctuation">(</span>n−<span class="token number">1</span><span class="token punctuation">)</span></code></pre></div>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">print_n</span> (s , n ) :</span><br><span class="line">	<span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">return</span><span class="comment">#用来退出循环</span></span><br><span class="line">	<span class="built_in">print</span> (s )</span><br><span class="line">	print_n (s , n−<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">print_n</span> <span class="token punctuation">(</span>s <span class="token punctuation">,</span> n <span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> n <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+		<span class="token keyword">return</span><span class="token comment">#用来退出循环</span>
+	<span class="token keyword">print</span> <span class="token punctuation">(</span>s <span class="token punctuation">)</span>
+	print_n <span class="token punctuation">(</span>s <span class="token punctuation">,</span> n−<span class="token number">1</span><span class="token punctuation">)</span></code></pre></div>
 
 <p>输入(input)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> text = <span class="built_in">input</span> ()<span class="comment">#Python 2 中，这个函数的名字叫 raw_input 。</span></span><br><span class="line">What are you waiting <span class="keyword">for</span> ?</span><br><span class="line"> text</span><br><span class="line"><span class="string">&#x27;What are you waiting for ?&#x27;</span></span><br><span class="line"> name = <span class="built_in">input</span> (<span class="string">&#x27;What ... is␣ your ␣ name ?\n&#x27;</span>)<span class="comment">#提示语‘\n’是换行</span></span><br><span class="line">What ... <span class="keyword">is</span> your name ?<span class="comment">#当上一个语句敲下回车，显示此句话提示</span></span><br><span class="line">Arthur , King of the Britons !<span class="comment">#之句话是输入的</span></span><br><span class="line"> name</span><br><span class="line">Arthur , King of the Britons !</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> text <span class="token operator">=</span> <span class="token builtin">input</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">#Python 2 中，这个函数的名字叫 raw_input 。</span>
+What are you waiting <span class="token keyword">for</span> ?
+ text
+<span class="token string">'What are you waiting for ?'</span>
+ name <span class="token operator">=</span> <span class="token builtin">input</span> <span class="token punctuation">(</span><span class="token string">'What ... is␣ your ␣ name ?\n'</span><span class="token punctuation">)</span><span class="token comment">#提示语‘\n’是换行</span>
+What <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">is</span> your name ?<span class="token comment">#当上一个语句敲下回车，显示此句话提示</span>
+Arthur <span class="token punctuation">,</span> King of the Britons !<span class="token comment">#之句话是输入的</span>
+ name
+Arthur <span class="token punctuation">,</span> King of the Britons !</code></pre></div>
 
 <p>亦可以这样</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> prompt = <span class="string">&#x27;What ... is␣the ␣ airspeed ␣ velocity ␣of␣an␣ unladen ␣ swallow ?\n&#x27;</span><span class="comment">#将提示语句的字符串给一个菜参数</span></span><br><span class="line"> speed = <span class="built_in">input</span> ( prompt )</span><br><span class="line">What ... <span class="keyword">is</span> the airspeed velocity of an unladen swallow ?</span><br><span class="line"><span class="number">42</span></span><br><span class="line"> <span class="built_in">int</span> ( speed )</span><br><span class="line"><span class="number">42</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> prompt <span class="token operator">=</span> <span class="token string">'What ... is␣the ␣ airspeed ␣ velocity ␣of␣an␣ unladen ␣ swallow ?\n'</span><span class="token comment">#将提示语句的字符串给一个菜参数</span>
+ speed <span class="token operator">=</span> <span class="token builtin">input</span> <span class="token punctuation">(</span> prompt <span class="token punctuation">)</span>
+What <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">is</span> the airspeed velocity of an unladen swallow ?
+<span class="token number">42</span>
+ <span class="token builtin">int</span> <span class="token punctuation">(</span> speed <span class="token punctuation">)</span>
+<span class="token number">42</span></code></pre></div>
 
 <p>如果用户输入不是数字构成的字符串，会获得一个错误：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> speed = <span class="built_in">input</span> ( prompt )</span><br><span class="line">What ... <span class="keyword">is</span> the airspeed velocity of an unladen swallow ?</span><br><span class="line">What do you mean , an African <span class="keyword">or</span> a European swallow ?</span><br><span class="line"> <span class="built_in">int</span> ( speed )</span><br><span class="line">ValueError : invalid literal <span class="keyword">for</span> <span class="built_in">int</span> () <span class="keyword">with</span> base <span class="number">10</span><span class="comment">#不是数字的错误</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> speed <span class="token operator">=</span> <span class="token builtin">input</span> <span class="token punctuation">(</span> prompt <span class="token punctuation">)</span>
+What <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">is</span> the airspeed velocity of an unladen swallow ?
+What do you mean <span class="token punctuation">,</span> an African <span class="token keyword">or</span> a European swallow ?
+ <span class="token builtin">int</span> <span class="token punctuation">(</span> speed <span class="token punctuation">)</span>
+ValueError <span class="token punctuation">:</span> invalid literal <span class="token keyword">for</span> <span class="token builtin">int</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">with</span> base <span class="token number">10</span><span class="token comment">#不是数字的错误</span></code></pre></div>
 
 <h3 id="time模块"><a href="#time模块" class="headerlink" title="time模块"></a>time模块</h3><p>time 模块提供了一个可以返回当前格林威治标准时间的函数，名字也是time</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">time.time()</span><br><span class="line"><span class="comment">#会显示时间，以纪元以来的秒数表示（Win,Unix1970年1月1日）</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> time
+time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">#会显示时间，以纪元以来的秒数表示（Win,Unix1970年1月1日）</span></code></pre></div>
 
 <h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>函数在未执行任何 return 语句的情况下终止，返回值将是 None ，这可不是 0 的绝对值</p>
 <p>python提供一个abs用来计算绝对值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">abs</span>(num)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token builtin">abs</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span></code></pre></div>
 
 <p>Python打开文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">td=<span class="built_in">open</span>(<span class="string">&#x27;D/TTT/TTT.txt&#x27;</span>,<span class="string">&#x27;a+&#x27;</span>)</span><br><span class="line">td.close()</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python">td<span class="token operator">=</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'D/TTT/TTT.txt'</span><span class="token punctuation">,</span><span class="token string">'a+'</span><span class="token punctuation">)</span>
+td<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
 
-</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>落花生</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://dbin.top/2021/07/01/python/Python/" title="Python学习笔记">https://dbin.top/2021/07/01/python/Python/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/07/02/c++/Cpp-%E9%93%BE%E8%A1%A8/" rel="prev" title="C++链表"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">C++链表</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/07/01/python/%E5%88%9D%E8%AF%86Python/" rel="next" title="Python学习笔记"><span class="post-nav-text">Python学习笔记</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 – 2022 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.yunyoujun.cn/" title="网站源码来自"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 落花生</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.2</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
-  setTimeout(blog_live_time, 1000);
-  const start = new Date('2021-06-18T00:00:00');
-  const now = new Date();
-  const timeDiff = (now.getTime() - start.getTime());
-  const msPerMinute = 60 * 1000;
-  const msPerHour = 60 * msPerMinute;
-  const msPerDay = 24 * msPerHour;
-  const passDay = Math.floor(timeDiff / msPerDay);
-  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
-  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
-  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
-  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
-}
-blog_live_time();
-</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#4fcde3" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
-  // Handle and trigger popup window
-  document.querySelector(".popup-trigger").addEventListener("click", () => {
-    document.querySelector(".popup").classList.add("show");
-    setTimeout(() => {
-      document.querySelector(".search-input").focus();
-    }, 100);
-  });
 
-  // Monitor main search box
-  const onPopupClose = () => {
-    document.querySelector(".popup").classList.remove("show");
-  };
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
-  document.querySelector(".popup-btn-close").addEventListener("click", () => {
-    onPopupClose();
-  });
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
 
-  window.addEventListener("keyup", event => {
-    if (event.key === "Escape") {
-      onPopupClose();
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python学习笔记</div>
+      <div>https://dbin.top/2021/07/01/python/Python/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>落花生</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年7月1日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
   });
-});
-</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><script>const date = new Date();
-const today = (date.getMonth() + 1) + "-" + date.getDate()
-const mourn_days = ["4-4","5-12","9-18"]
-if (mourn_days.includes(today)) {
-  document.documentElement.style.filter = "grayscale(1)";
-}</script></div></body></html>
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

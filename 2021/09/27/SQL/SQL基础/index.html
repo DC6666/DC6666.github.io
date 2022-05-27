@@ -1,12 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#4fcde3"><meta name="author" content="落花生"><meta name="copyright" content="落花生"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>SQL services基础 | 唯落花生</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
-  [".post-card",".post-content img"].forEach((target)=> {
-    ScrollReveal().reveal(target);
-  })
-});
-</script><link rel="icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#4fcde3"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
-    const Yun = window.Yun || {};
-    window.CONFIG = {"hostname":"dbin.top","root":"/","title":["落","花","生","的","小","站"],"version":"1.6.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.json"},"fireworks":{"colors":["0, 0, 0","255, 255, 255","128, 128, 128","201, 4, 17"]}};
-  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/null"><script src="//at.alicdn.com/t/font_2648851_os7f9jxepo.js" async></script><meta name="description" content="基于SQL Service 内容来源于我老师的ppt，仅作为学习交流与参考">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon.png">
+  <link rel="icon" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#42826d99">
+  <meta name="author" content="落花生">
+  <meta name="keywords" content=" ">
+  
+    <meta name="description" content="基于SQL Service 内容来源于我老师的ppt，仅作为学习交流与参考">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL services基础">
 <meta property="og:url" content="https://dbin.top/2021/09/27/SQL/SQL%E5%9F%BA%E7%A1%80/index.html">
@@ -17,7 +27,266 @@
 <meta property="article:modified_time" content="2022-02-06T14:34:11.712Z">
 <meta property="article:author" content="落花生">
 <meta property="article:tag" content="SQL">
-<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="落花生"><img width="96" loading="lazy" src="http://dbins.gitee.io/image/head/head.jpg" alt="落花生"><span class="site-author-status" title="开心每一天">🥰</span></a><div class="site-author-name"><a href="/about/">落花生</a></div><span class="site-name">唯落花生</span><sub class="site-subtitle">improve oneself</sub><div class="site-desciption">花生有个长在枝头的理想吗？</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg></span><span class="site-state-item-count">46</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fenlei"></use></svg></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-biaoqian"></use></svg></span><span class="site-state-item-count">29</span></a></div><a class="site-state-item hty-icon-button" href="/others/index.html" title="others"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shezhi1"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wanmujun@aliyun.com" title="E-Mail" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-icon-test"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:beifen404@gmail.com" title="备用邮箱" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-youxiang4"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E6%A1%83%E5%AD%90" title="Twitter" target="_blank" style="color:undefined"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="frends" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-men-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="MyGirl" style="color:#FF0000"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EMicrosoft-SQL-sever"><span class="toc-number">1.</span> <span class="toc-text">关于Microsoft SQL sever</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">数据库文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">对数据库的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%E5%92%8C%E4%BA%8B%E5%8A%A1%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">为数据库添加一个数据库文件和事务日志文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6name1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text">修改数据库数据文件name1的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">对表的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E7%B1%BB"><span class="toc-number">3.1.1.</span> <span class="toc-text">数据类型分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.2.</span> <span class="toc-text">精确数值类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%91%E4%BC%BC%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.3.</span> <span class="toc-text">近似数值类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%A7%E5%B8%81%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.4.</span> <span class="toc-text">货币类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.5.</span> <span class="toc-text">日期时间类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.6.</span> <span class="toc-text">字符类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.7.</span> <span class="toc-text">二进制类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">3.2.</span> <span class="toc-text">创建表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E8%A1%A8"><span class="toc-number">3.2.1.</span> <span class="toc-text">一般表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E4%B8%AD%E6%9C%89%E8%AE%A1%E7%AE%97%E5%BE%97%E5%87%BA%E5%80%BC%E7%9A%84"><span class="toc-number">3.2.2.</span> <span class="toc-text">表中有计算得出值的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%97"><span class="toc-number">3.2.3.</span> <span class="toc-text">添加列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text">修改数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%88%97"><span class="toc-number">3.2.5.</span> <span class="toc-text">删除列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-number">3.3.</span> <span class="toc-text">删除表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">数据库完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">4.1.</span> <span class="toc-text">实体完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E9%9D%A0%E5%88%9B%E5%BB%BA%E4%B8%BB%E9%94%AE%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.1.1.</span> <span class="toc-text">依靠创建主键实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%BB%E9%94%AE"><span class="toc-number">4.1.2.</span> <span class="toc-text">添加主键</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%BA%A6%E6%9D%9F"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">添加约束</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%88%96%E8%80%85%E4%B9%8B%E9%97%B4%E6%B7%BB%E5%8A%A0%E4%B8%BB%E9%94%AE"><span class="toc-number">4.1.2.2.</span> <span class="toc-text">或者之间添加主键</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%BB%E9%94%AE"><span class="toc-number">4.1.2.3.</span> <span class="toc-text">删除主键</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">4.2.</span> <span class="toc-text">参照完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%A4%96%E9%94%AE"><span class="toc-number">4.2.1.</span> <span class="toc-text">添加外键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%A4%96%E9%94%AE-1"><span class="toc-number">4.2.2.</span> <span class="toc-text">添加外键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%A4%96%E9%94%AE"><span class="toc-number">4.2.3.</span> <span class="toc-text">删除外键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7%E7%9A%84%E8%BF%9D%E7%BA%A6%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">4.2.4.</span> <span class="toc-text">参照完整性的违约处理策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">4.3.</span> <span class="toc-text">域完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#default-%E7%BA%A6%E6%9D%9F"><span class="toc-number">4.3.1.</span> <span class="toc-text">default 约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#check-%E7%BA%A6%E6%9D%9F"><span class="toc-number">4.3.2.</span> <span class="toc-text">check 约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unique-%E7%BA%A6%E6%9D%9F"><span class="toc-number">4.3.3.</span> <span class="toc-text">unique 约束</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%B4%A2"><span class="toc-number">5.</span> <span class="toc-text">引索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E9%9B%86%E5%BC%95%E7%B4%A2"><span class="toc-number">5.1.</span> <span class="toc-text">聚集引索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%81%9A%E9%9B%86%E5%BC%95%E7%B4%A2"><span class="toc-number">5.2.</span> <span class="toc-text">非聚集引索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="toc-number">5.3.</span> <span class="toc-text">创建索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="toc-number">5.3.1.</span> <span class="toc-text">1聚集索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="toc-number">5.3.2.</span> <span class="toc-text">2非聚集索引</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://dbin.top/2021/09/27/SQL/SQL%E5%9F%BA%E7%A1%80/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="落花生"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="唯落花生"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">SQL services基础</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-09-27 09:42:22" itemprop="dateCreated datePublished" datetime="2021-09-27T09:42:22+08:00">2021-09-27</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-02-06 22:34:11" itemprop="dateModified" datetime="2022-02-06T22:34:11+08:00">2022-02-06</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">3k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">12m</span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2021/09/27/SQL/SQL%E5%9F%BA%E7%A1%80/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:#007EFF" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/" style="--text-color:#28d8f7" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/SQL/" style="--text-color:#FF1CAE"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">SQL</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#4fcde3;"><blockquote>
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>SQL services基础 - 唯落花生</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2648851_os7f9jxepo.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbin.top","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"uKOOPQNyiz8V0YbQ26C0rPDJ-MdYXbMMI","app_key":"VqFAs3nVmnRh60W7DUaprXW1","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>唯落花生</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-guidang"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-fenlei"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-biaoqian_huaban1"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SQL services基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-27 09:42" pubdate>
+          2021年9月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SQL services基础</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
 <p>基于SQL Service</p>
 <p>内容来源于我老师的ppt，仅作为学习交流与参考</p>
 </blockquote>
@@ -29,11 +298,56 @@
 <blockquote>
 <p>tips:以下代码关键词等不区分大小写。</p>
 </blockquote>
-<h2 id="对数据库的操作"><a href="#对数据库的操作" class="headerlink" title="对数据库的操作"></a>对数据库的操作</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE 数据库名</span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">PRIMARY</span></span><br><span class="line">(</span><br><span class="line">    <span class="comment">--创建数据库文件</span></span><br><span class="line">	NAME <span class="operator">=</span> 逻辑名,</span><br><span class="line">	FILENAME<span class="operator">=</span><span class="string">&#x27;路径+文件名+.MDF&#x27;</span>,SIZE <span class="operator">=</span> <span class="number">10</span>,</span><br><span class="line">    <span class="comment">/*如：D:\SQL2014\DataBase\ToyUniverse_Data.MDF*/</span> </span><br><span class="line">	MAXSIZE <span class="operator">=</span> UNLIMITED, <span class="comment">--大小限制单位MB 无限制</span></span><br><span class="line">	FILEGROWTH <span class="operator">=</span> <span class="number">5</span> <span class="comment">--文件增长 每次增长 5MB</span></span><br><span class="line">)</span><br><span class="line">LOG <span class="keyword">ON</span></span><br><span class="line">(</span><br><span class="line">    <span class="comment">--创建事务日志文件</span></span><br><span class="line">	NAME <span class="operator">=</span> 逻辑名, </span><br><span class="line">	FILENAME<span class="operator">=</span><span class="string">&#x27;路径+文件名+.LDF&#x27;</span>,SIZE <span class="operator">=</span> <span class="number">10</span>,</span><br><span class="line">	MAXSIZE <span class="operator">=</span> <span class="number">2000</span>,</span><br><span class="line">	FILEGROWTH <span class="operator">=</span> <span class="number">10</span><span class="operator">%</span> </span><br><span class="line">) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="对数据库的操作"><a href="#对数据库的操作" class="headerlink" title="对数据库的操作"></a>对数据库的操作</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> 数据库名
+<span class="token keyword">ON</span> <span class="token keyword">PRIMARY</span>
+<span class="token punctuation">(</span>
+    <span class="token comment">--创建数据库文件</span>
+	NAME <span class="token operator">=</span> 逻辑名<span class="token punctuation">,</span>
+	FILENAME<span class="token operator">=</span><span class="token string">'路径+文件名+.MDF'</span><span class="token punctuation">,</span>SIZE <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token comment">/*如：D:\SQL2014\DataBase\ToyUniverse_Data.MDF*/</span> 
+	MAXSIZE <span class="token operator">=</span> UNLIMITED<span class="token punctuation">,</span> <span class="token comment">--大小限制单位MB 无限制</span>
+	FILEGROWTH <span class="token operator">=</span> <span class="token number">5</span> <span class="token comment">--文件增长 每次增长 5MB</span>
+<span class="token punctuation">)</span>
+LOG <span class="token keyword">ON</span>
+<span class="token punctuation">(</span>
+    <span class="token comment">--创建事务日志文件</span>
+	NAME <span class="token operator">=</span> 逻辑名<span class="token punctuation">,</span> 
+	FILENAME<span class="token operator">=</span><span class="token string">'路径+文件名+.LDF'</span><span class="token punctuation">,</span>SIZE <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+	MAXSIZE <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+	FILEGROWTH <span class="token operator">=</span> <span class="token number">10</span><span class="token operator">%</span> 
+<span class="token punctuation">)</span> 
+</code></pre></div>
 
-<h3 id="为数据库添加一个数据库文件和事务日志文件"><a href="#为数据库添加一个数据库文件和事务日志文件" class="headerlink" title="为数据库添加一个数据库文件和事务日志文件"></a>为数据库添加一个数据库文件和事务日志文件</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> DATABASE 数据库名</span><br><span class="line"><span class="keyword">ADD</span> FILE</span><br><span class="line">(</span><br><span class="line">	NAME <span class="operator">=</span> 逻辑名称,</span><br><span class="line">	FILENAME<span class="operator">=</span><span class="string">&#x27;路径+文件名+.MDF.NDF&#x27;</span>,<span class="comment">--</span></span><br><span class="line">	SIZE <span class="operator">=</span> <span class="number">5</span>,</span><br><span class="line">	MAXSIZE <span class="operator">=</span> UNLIMITED,</span><br><span class="line">	FILEGROWTH <span class="operator">=</span> <span class="number">5</span></span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"><span class="keyword">ALTER</span> DATABASE ToyUniverse</span><br><span class="line"><span class="keyword">ADD</span> LOG FILE</span><br><span class="line">(</span><br><span class="line">	NAME <span class="operator">=</span> 逻辑名称,</span><br><span class="line">	FILENAME<span class="operator">=</span><span class="string">&#x27;路径+文件名+.MDF.LDF&#x27;</span>,</span><br><span class="line">	SIZE <span class="operator">=</span> <span class="number">10</span>,</span><br><span class="line">	MAXSIZE <span class="operator">=</span> <span class="number">2000</span>,</span><br><span class="line">	FILEGROWTH <span class="operator">=</span> <span class="number">10</span><span class="operator">%</span></span><br><span class="line">)</span><br><span class="line">GO </span><br></pre></td></tr></table></figure>
+<h3 id="为数据库添加一个数据库文件和事务日志文件"><a href="#为数据库添加一个数据库文件和事务日志文件" class="headerlink" title="为数据库添加一个数据库文件和事务日志文件"></a>为数据库添加一个数据库文件和事务日志文件</h3><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> 数据库名
+<span class="token keyword">ADD</span> <span class="token keyword">FILE</span>
+<span class="token punctuation">(</span>
+	NAME <span class="token operator">=</span> 逻辑名称<span class="token punctuation">,</span>
+	FILENAME<span class="token operator">=</span><span class="token string">'路径+文件名+.MDF.NDF'</span><span class="token punctuation">,</span><span class="token comment">--</span>
+	SIZE <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span>
+	MAXSIZE <span class="token operator">=</span> UNLIMITED<span class="token punctuation">,</span>
+	FILEGROWTH <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token punctuation">)</span>
+GO
+<span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> ToyUniverse
+<span class="token keyword">ADD</span> LOG <span class="token keyword">FILE</span>
+<span class="token punctuation">(</span>
+	NAME <span class="token operator">=</span> 逻辑名称<span class="token punctuation">,</span>
+	FILENAME<span class="token operator">=</span><span class="token string">'路径+文件名+.MDF.LDF'</span><span class="token punctuation">,</span>
+	SIZE <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+	MAXSIZE <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+	FILEGROWTH <span class="token operator">=</span> <span class="token number">10</span><span class="token operator">%</span>
+<span class="token punctuation">)</span>
+GO </code></pre></div>
 
-<h3 id="修改数据库数据文件name1的属性"><a href="#修改数据库数据文件name1的属性" class="headerlink" title="修改数据库数据文件name1的属性"></a>修改数据库数据文件name1的属性</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> DATABASE 数据库名</span><br><span class="line">MODIFY  FILE</span><br><span class="line">(</span><br><span class="line">	NAME <span class="operator">=</span> name1,</span><br><span class="line">	SIZE <span class="operator">=</span> <span class="number">10</span>,<span class="comment">--修该大小等。</span></span><br><span class="line">	MAXSIZE <span class="operator">=</span> <span class="number">1000</span>,</span><br><span class="line">	FILEGROWTH <span class="operator">=</span> <span class="number">10</span></span><br><span class="line">)</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据库数据文件name1的属性"><a href="#修改数据库数据文件name1的属性" class="headerlink" title="修改数据库数据文件name1的属性"></a>修改数据库数据文件name1的属性</h3><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> 数据库名
+<span class="token keyword">MODIFY</span>  <span class="token keyword">FILE</span>
+<span class="token punctuation">(</span>
+	NAME <span class="token operator">=</span> name1<span class="token punctuation">,</span>
+	SIZE <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span><span class="token comment">--修该大小等。</span>
+	MAXSIZE <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+	FILEGROWTH <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token punctuation">)</span>
+GO</code></pre></div>
 
 <h2 id="对表的基本操作"><a href="#对表的基本操作" class="headerlink" title="对表的基本操作"></a>对表的基本操作</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="数据类型分类"><a href="#数据类型分类" class="headerlink" title="数据类型分类"></a>数据类型分类</h4><table>
 <thead>
@@ -308,95 +622,169 @@
 <td>存储可变大小的二进制数据</td>
 </tr>
 </tbody></table>
-<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><h4 id="一般表"><a href="#一般表" class="headerlink" title="一般表"></a>一般表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(</span><br><span class="line">    test1 <span class="type">char</span>(<span class="number">5</span>),	<span class="comment">--列(属性)名 数据类型,</span></span><br><span class="line">    test2 <span class="type">int</span>,		<span class="comment">--列(属性)名 数据类型,</span></span><br><span class="line">    test3 <span class="keyword">double</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><h4 id="一般表"><a href="#一般表" class="headerlink" title="一般表"></a>一般表</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> 表名<span class="token punctuation">(</span>
+    test1 <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>	<span class="token comment">--列(属性)名 数据类型,</span>
+    test2 <span class="token keyword">int</span><span class="token punctuation">,</span>		<span class="token comment">--列(属性)名 数据类型,</span>
+    test3 <span class="token keyword">double</span>
+<span class="token punctuation">)</span></code></pre></div>
 
-<h4 id="表中有计算得出值的"><a href="#表中有计算得出值的" class="headerlink" title="表中有计算得出值的"></a>表中有计算得出值的</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(</span><br><span class="line">    test1 <span class="type">float</span>,</span><br><span class="line">    test2 <span class="type">float</span>,</span><br><span class="line">    test3 <span class="keyword">as</span> (test1<span class="operator">*</span>test2) persisted <span class="comment">--test3由计算得出</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="表中有计算得出值的"><a href="#表中有计算得出值的" class="headerlink" title="表中有计算得出值的"></a>表中有计算得出值的</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> 表名<span class="token punctuation">(</span>
+    test1 <span class="token keyword">float</span><span class="token punctuation">,</span>
+    test2 <span class="token keyword">float</span><span class="token punctuation">,</span>
+    test3 <span class="token keyword">as</span> <span class="token punctuation">(</span>test1<span class="token operator">*</span>test2<span class="token punctuation">)</span> persisted <span class="token comment">--test3由计算得出</span>
+<span class="token punctuation">)</span></code></pre></div>
 
-<h4 id="添加列"><a href="#添加列" class="headerlink" title="添加列"></a>添加列</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span> 列名 数据类型</span><br><span class="line"><span class="comment">--如 alter table 表名 add test4 float</span></span><br></pre></td></tr></table></figure>
+<h4 id="添加列"><a href="#添加列" class="headerlink" title="添加列"></a>添加列</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> 表名 <span class="token keyword">add</span> 列名 数据类型
+<span class="token comment">--如 alter table 表名 add test4 float</span></code></pre></div>
 
-<h4 id="修改数据类型"><a href="#修改数据类型" class="headerlink" title="修改数据类型"></a>修改数据类型</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">alter</span> <span class="keyword">column</span> 列名 数据类型</span><br><span class="line"><span class="comment">--如 alter table 表名 alter column test4 varchar(1000)</span></span><br></pre></td></tr></table></figure>
+<h4 id="修改数据类型"><a href="#修改数据类型" class="headerlink" title="修改数据类型"></a>修改数据类型</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> 表名 <span class="token keyword">alter</span> <span class="token keyword">column</span> 列名 数据类型
+<span class="token comment">--如 alter table 表名 alter column test4 varchar(1000)</span></code></pre></div>
 
-<h4 id="删除列"><a href="#删除列" class="headerlink" title="删除列"></a>删除列</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> <span class="keyword">column</span> 列名</span><br><span class="line"><span class="comment">--如 alter table 表名 drop column test4</span></span><br></pre></td></tr></table></figure>
+<h4 id="删除列"><a href="#删除列" class="headerlink" title="删除列"></a>删除列</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> 表名 <span class="token keyword">drop</span> <span class="token keyword">column</span> 列名
+<span class="token comment">--如 alter table 表名 drop column test4</span></code></pre></div>
 
-<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> 表名</span><br></pre></td></tr></table></figure>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">drop</span> <span class="token keyword">table</span> 表名</code></pre></div>
 
 <h2 id="数据库完整性"><a href="#数据库完整性" class="headerlink" title="数据库完整性"></a>数据库完整性</h2><p>数据库中的数据是从外界输入的，而数据的输入由于种种原因，会发生输入无效或错误信息。保证输入的数据符合规定，成为了数据库系统，尤其是多用户的关系数据库系统首要关注的问题。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">实体完体性</span><br><span class="line">参照完整性</span><br><span class="line">域完整性</span><br><span class="line">用户自定义完整性。</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-none"><code class="language-none">实体完体性
+参照完整性
+域完整性
+用户自定义完整性。</code></pre></div>
 
-<h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><h4 id="依靠创建主键实现"><a href="#依靠创建主键实现" class="headerlink" title="依靠创建主键实现"></a>依靠创建主键实现</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Test(</span><br><span class="line">	test1 <span class="type">float</span> <span class="keyword">primary</span> key,<span class="comment">--primary key 将test1 列设置为主键 列级定义</span></span><br><span class="line">	test2 <span class="type">float</span>,</span><br><span class="line">	test3 <span class="type">char</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><h4 id="依靠创建主键实现"><a href="#依靠创建主键实现" class="headerlink" title="依靠创建主键实现"></a>依靠创建主键实现</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Test<span class="token punctuation">(</span>
+	test1 <span class="token keyword">float</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span><span class="token comment">--primary key 将test1 列设置为主键 列级定义</span>
+	test2 <span class="token keyword">float</span><span class="token punctuation">,</span>
+	test3 <span class="token keyword">char</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <p>或者</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Test(</span><br><span class="line">	test1 <span class="type">float</span>,</span><br><span class="line">	test2 <span class="type">float</span>,</span><br><span class="line">	test3 <span class="type">char</span>,</span><br><span class="line">    <span class="comment">--设置test1和test2为主键，只要test1与test2不同时相同就可，当然也可以只设置一个。（表级定义）设置两个及以上列为主键时应用表级约束</span></span><br><span class="line">	<span class="keyword">primary</span> key(test1,test2)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Test<span class="token punctuation">(</span>
+	test1 <span class="token keyword">float</span><span class="token punctuation">,</span>
+	test2 <span class="token keyword">float</span><span class="token punctuation">,</span>
+	test3 <span class="token keyword">char</span><span class="token punctuation">,</span>
+    <span class="token comment">--设置test1和test2为主键，只要test1与test2不同时相同就可，当然也可以只设置一个。（表级定义）设置两个及以上列为主键时应用表级约束</span>
+	<span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>test1<span class="token punctuation">,</span>test2<span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <p>或者</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Test(</span><br><span class="line">	test1 <span class="type">float</span>,</span><br><span class="line">	test2 <span class="type">float</span>,</span><br><span class="line">	test3 <span class="type">char</span>,</span><br><span class="line">	<span class="keyword">constraint</span> pktest1 <span class="keyword">primary</span> key (test1) <span class="comment">--表级定义，设置约束名为 pktest1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Test<span class="token punctuation">(</span>
+	test1 <span class="token keyword">float</span><span class="token punctuation">,</span>
+	test2 <span class="token keyword">float</span><span class="token punctuation">,</span>
+	test3 <span class="token keyword">char</span><span class="token punctuation">,</span>
+	<span class="token keyword">constraint</span> pktest1 <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token punctuation">(</span>test1<span class="token punctuation">)</span> <span class="token comment">--表级定义，设置约束名为 pktest1</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <h4 id="添加主键"><a href="#添加主键" class="headerlink" title="添加主键"></a>添加主键</h4><p>在创建表是忘记设置主键可以添加主键</p>
-<h5 id="添加约束"><a href="#添加约束" class="headerlink" title="添加约束"></a>添加约束</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Test <span class="keyword">add</span> <span class="keyword">constraint</span> pkTest <span class="keyword">primary</span> key(test1)</span><br></pre></td></tr></table></figure>
+<h5 id="添加约束"><a href="#添加约束" class="headerlink" title="添加约束"></a>添加约束</h5><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Test <span class="token keyword">add</span> <span class="token keyword">constraint</span> pkTest <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>test1<span class="token punctuation">)</span></code></pre></div>
 
-<h5 id="或者之间添加主键"><a href="#或者之间添加主键" class="headerlink" title="或者之间添加主键"></a>或者之间添加主键</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Test <span class="keyword">add</span> <span class="keyword">primary</span> key(test1)</span><br></pre></td></tr></table></figure>
+<h5 id="或者之间添加主键"><a href="#或者之间添加主键" class="headerlink" title="或者之间添加主键"></a>或者之间添加主键</h5><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Test <span class="token keyword">add</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>test1<span class="token punctuation">)</span></code></pre></div>
 
 <h5 id="删除主键"><a href="#删除主键" class="headerlink" title="删除主键"></a>删除主键</h5><p>在删除主键前，需要知道主键的约束名，通过以下代码查看</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> sysobjects <span class="keyword">where</span> parent_obj <span class="keyword">in</span>(<span class="keyword">select</span> id <span class="keyword">from</span> sysobjects <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;表名&#x27;</span>) <span class="comment">--表名要打引号，查找出的约束名为name</span></span><br><span class="line"><span class="comment">--或者</span></span><br><span class="line"><span class="keyword">exec</span> sp_helpconstraint <span class="variable">@objname</span><span class="operator">=</span><span class="string">&#x27;Test&#x27;</span> <span class="comment">--查找出的约束名为 constraint_name,type为PRIMARY KEY</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> sysobjects <span class="token keyword">where</span> parent_obj <span class="token operator">in</span><span class="token punctuation">(</span><span class="token keyword">select</span> id <span class="token keyword">from</span> sysobjects <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token string">'表名'</span><span class="token punctuation">)</span> <span class="token comment">--表名要打引号，查找出的约束名为name</span>
+<span class="token comment">--或者</span>
+<span class="token keyword">exec</span> sp_helpconstraint <span class="token variable">@objname</span><span class="token operator">=</span><span class="token string">'Test'</span> <span class="token comment">--查找出的约束名为 constraint_name,type为PRIMARY KEY</span></code></pre></div>
 
 <p>通过上面两条语句查找到约束名</p>
 <p>删除约束即可</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Test <span class="keyword">drop</span> <span class="keyword">constraint</span> 约束名</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Test <span class="token keyword">drop</span> <span class="token keyword">constraint</span> 约束名</code></pre></div>
 
 <h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><p>在关系数据库中通过外键实现参照完整性</p>
 <h4 id="添加外键"><a href="#添加外键" class="headerlink" title="添加外键"></a>添加外键</h4><p>列级约束</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Tests(</span><br><span class="line">	test0 <span class="type">float</span> <span class="keyword">references</span> Test(test1),</span><br><span class="line">	test1 <span class="type">time</span> <span class="keyword">primary</span> key,</span><br><span class="line">	test2 money</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Tests<span class="token punctuation">(</span>
+	test0 <span class="token keyword">float</span> <span class="token keyword">references</span> Test<span class="token punctuation">(</span>test1<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	test1 <span class="token keyword">time</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+	test2 money
+<span class="token punctuation">)</span></code></pre></div>
 
 
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Tests(</span><br><span class="line">	test0 <span class="type">float</span>,</span><br><span class="line">	test1 <span class="type">time</span> <span class="keyword">primary</span> key, <span class="comment">--设置为主键</span></span><br><span class="line">	test2 money,</span><br><span class="line">	<span class="keyword">foreign</span> key(test0) <span class="keyword">references</span> Test(test1) <span class="comment">--设置外键为Test 的主键test1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Tests<span class="token punctuation">(</span>
+	test0 <span class="token keyword">float</span><span class="token punctuation">,</span>
+	test1 <span class="token keyword">time</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> <span class="token comment">--设置为主键</span>
+	test2 money<span class="token punctuation">,</span>
+	<span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>test0<span class="token punctuation">)</span> <span class="token keyword">references</span> Test<span class="token punctuation">(</span>test1<span class="token punctuation">)</span> <span class="token comment">--设置外键为Test 的主键test1</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <h4 id="添加外键-1"><a href="#添加外键-1" class="headerlink" title="添加外键"></a>添加外键</h4><p>在创建表时未添加外键，之后添加外键</p>
 <p>如将Tests 的 test0 列设置外键，外键未Test 的test1列</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Tests </span><br><span class="line"><span class="keyword">add</span> <span class="keyword">constraint</span> fkTests1</span><br><span class="line"><span class="keyword">foreign</span> key(test0) <span class="keyword">references</span> Test(test1)<span class="comment">--可以不用换行用空格隔开</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Tests 
+<span class="token keyword">add</span> <span class="token keyword">constraint</span> fkTests1
+<span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>test0<span class="token punctuation">)</span> <span class="token keyword">references</span> Test<span class="token punctuation">(</span>test1<span class="token punctuation">)</span><span class="token comment">--可以不用换行用空格隔开</span></code></pre></div>
 
 <p>或者</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Tests <span class="keyword">add</span> <span class="keyword">constraint</span> fkTests1 <span class="keyword">foreign</span> key(test0) <span class="keyword">references</span> Test(test1)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Tests <span class="token keyword">add</span> <span class="token keyword">constraint</span> fkTests1 <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>test0<span class="token punctuation">)</span> <span class="token keyword">references</span> Test<span class="token punctuation">(</span>test1<span class="token punctuation">)</span></code></pre></div>
 
 
 
 <h4 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h4><p>以下两句查找FOREIGN KEY 约束名</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> sysobjects <span class="keyword">where</span> parent_obj <span class="keyword">in</span>(<span class="keyword">select</span> id <span class="keyword">from</span> sysobjects <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;Tests&#x27;</span>)</span><br><span class="line"><span class="keyword">exec</span> sp_helpconstraint <span class="variable">@objname</span><span class="operator">=</span><span class="string">&#x27;Tests&#x27;</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> sysobjects <span class="token keyword">where</span> parent_obj <span class="token operator">in</span><span class="token punctuation">(</span><span class="token keyword">select</span> id <span class="token keyword">from</span> sysobjects <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token string">'Tests'</span><span class="token punctuation">)</span>
+<span class="token keyword">exec</span> sp_helpconstraint <span class="token variable">@objname</span><span class="token operator">=</span><span class="token string">'Tests'</span></code></pre></div>
 
 <p>删除</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Test <span class="keyword">drop</span> <span class="keyword">constraint</span> 约束名</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Test <span class="token keyword">drop</span> <span class="token keyword">constraint</span> 约束名</code></pre></div>
 
 <h4 id="参照完整性的违约处理策略"><a href="#参照完整性的违约处理策略" class="headerlink" title="参照完整性的违约处理策略"></a>参照完整性的违约处理策略</h4><p>当删除外键对应的主键表的数据时，系统默认不准删除，设置相关的违约处理策略可以解决此问题</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">on</span> <span class="keyword">delete</span> cascade <span class="comment">--级联删除</span></span><br><span class="line"><span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">no</span> action <span class="comment">--拒绝删除</span></span><br><span class="line"><span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">update</span> <span class="comment">--级联更新</span></span><br><span class="line"><span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">on</span> action <span class="comment">--拒绝删除</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">cascade</span> <span class="token comment">--级联删除</span>
+<span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">no</span> <span class="token keyword">action</span> <span class="token comment">--拒绝删除</span>
+<span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">update</span> <span class="token comment">--级联更新</span>
+<span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">on</span> <span class="token keyword">action</span> <span class="token comment">--拒绝删除</span></code></pre></div>
 
 
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Tests(</span><br><span class="line">	test0 <span class="type">float</span> <span class="keyword">references</span> Test(test1) <span class="keyword">on</span> <span class="keyword">delete</span> cascade,<span class="comment">--级联删除</span></span><br><span class="line">	test1 <span class="type">time</span> <span class="keyword">primary</span> key,</span><br><span class="line">	test2 money,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Tests<span class="token punctuation">(</span>
+	test0 <span class="token keyword">float</span> <span class="token keyword">references</span> Test<span class="token punctuation">(</span>test1<span class="token punctuation">)</span> <span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">cascade</span><span class="token punctuation">,</span><span class="token comment">--级联删除</span>
+	test1 <span class="token keyword">time</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+	test2 money<span class="token punctuation">,</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Tests(</span><br><span class="line">	test0 <span class="type">float</span> <span class="keyword">references</span> Test(test1) <span class="keyword">on</span> <span class="keyword">update</span> cascade,<span class="comment">--级联更新</span></span><br><span class="line">	test1 <span class="type">time</span> <span class="keyword">primary</span> key,</span><br><span class="line">	test2 money,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Tests<span class="token punctuation">(</span>
+	test0 <span class="token keyword">float</span> <span class="token keyword">references</span> Test<span class="token punctuation">(</span>test1<span class="token punctuation">)</span> <span class="token keyword">on</span> <span class="token keyword">update</span> <span class="token keyword">cascade</span><span class="token punctuation">,</span><span class="token comment">--级联更新</span>
+	test1 <span class="token keyword">time</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+	test2 money<span class="token punctuation">,</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <p>也可进行表级定义</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Tests(</span><br><span class="line">	test0 <span class="type">float</span>,</span><br><span class="line">	test1 <span class="type">time</span> <span class="keyword">primary</span> key,</span><br><span class="line">	test2 money,</span><br><span class="line">	<span class="keyword">foreign</span> key(test0) <span class="keyword">references</span> Test(test1) <span class="keyword">on</span> <span class="keyword">update</span> cascade</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Tests<span class="token punctuation">(</span>
+	test0 <span class="token keyword">float</span><span class="token punctuation">,</span>
+	test1 <span class="token keyword">time</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+	test2 money<span class="token punctuation">,</span>
+	<span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>test0<span class="token punctuation">)</span> <span class="token keyword">references</span> Test<span class="token punctuation">(</span>test1<span class="token punctuation">)</span> <span class="token keyword">on</span> <span class="token keyword">update</span> <span class="token keyword">cascade</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <p>在添加外键时也可以直接在添加以下语句之一语句后加设置级联更新或删除</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">on</span> <span class="keyword">update</span> cascade</span><br><span class="line"><span class="keyword">on</span> <span class="keyword">delete</span> cascade</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">on</span> <span class="token keyword">update</span> <span class="token keyword">cascade</span>
+<span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">cascade</span></code></pre></div>
 
 <h3 id="域完整性"><a href="#域完整性" class="headerlink" title="域完整性"></a>域完整性</h3><p><strong>域完整性确保了只有在某一合法范围内的值才能存储到一列中。可以通过限制数据类型、值的范围和数据格式来实施域完整性。</strong></p>
 <p>在SQL Server中可以通过默认（<code>DEFAULT</code>）约束、检查约束（<code>CHECK</code>）约束、非空（<code>NOT NULL</code>）约束、唯一（<code>UNIQUE</code>）约束来实施域完整性。</p>
-<h4 id="default-约束"><a href="#default-约束" class="headerlink" title="default 约束"></a><code>default</code> 约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Student(</span><br><span class="line">	id <span class="type">char</span>(<span class="number">10</span>),</span><br><span class="line">	names <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">	sex <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span><span class="comment">--默认未男</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="default-约束"><a href="#default-约束" class="headerlink" title="default 约束"></a><code>default</code> 约束</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Student<span class="token punctuation">(</span>
+	id <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	names <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	sex <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">'男'</span><span class="token comment">--默认未男</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <p>添加约束,如果建表时未添加约束</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Student</span><br><span class="line"><span class="keyword">add</span> <span class="keyword">constraint</span> 约束名 <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span> <span class="keyword">for</span> sex</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Student
+<span class="token keyword">add</span> <span class="token keyword">constraint</span> 约束名 <span class="token keyword">default</span> <span class="token string">'男'</span> <span class="token keyword">for</span> sex</code></pre></div>
 
 <p>删除约束</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> Student</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">constraint</span> defSex <span class="comment">--约束名用前面查看主键和外键约束名的方法查看</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> Student
+<span class="token keyword">drop</span> <span class="token keyword">constraint</span> defSex <span class="token comment">--约束名用前面查看主键和外键约束名的方法查看</span></code></pre></div>
 
-<h4 id="check-约束"><a href="#check-约束" class="headerlink" title="check 约束"></a><code>check</code> 约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Student(</span><br><span class="line">	id <span class="type">char</span>(<span class="number">10</span>),</span><br><span class="line">	names <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">	sex <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">check</span> (sex <span class="keyword">in</span>(<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;女&#x27;</span>)),</span><br><span class="line">	age <span class="type">int</span> <span class="keyword">check</span>(age<span class="operator">&gt;=</span><span class="number">15</span> <span class="keyword">and</span> age <span class="operator">&lt;=</span><span class="number">100</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="check-约束"><a href="#check-约束" class="headerlink" title="check 约束"></a><code>check</code> 约束</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Student<span class="token punctuation">(</span>
+	id <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	names <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	sex <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">check</span> <span class="token punctuation">(</span>sex <span class="token operator">in</span><span class="token punctuation">(</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	age <span class="token keyword">int</span> <span class="token keyword">check</span><span class="token punctuation">(</span>age<span class="token operator">>=</span><span class="token number">15</span> <span class="token operator">and</span> age <span class="token operator">&lt;=</span><span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <p>添加和删除方法与default一样</p>
-<h4 id="unique-约束"><a href="#unique-约束" class="headerlink" title="unique 约束"></a><code>unique 约束</code></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Student(</span><br><span class="line">	id <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">unique</span>,</span><br><span class="line">	names <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="unique-约束"><a href="#unique-约束" class="headerlink" title="unique 约束"></a><code>unique 约束</code></h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Student<span class="token punctuation">(</span>
+	id <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">unique</span><span class="token punctuation">,</span>
+	names <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span></code></pre></div>
 
 <p>添加和删除方法与default一样</p>
 <h2 id="引索"><a href="#引索" class="headerlink" title="引索"></a>引索</h2><p>用户对数据库最频繁的操作是进行数据查询。一般情况下，数据库在进行查询操作时需要对整个表进行数据搜索。当表中的数据很多时，搜索数据就需要很长的时间，这就造成了服务器的资源浪费。为了提高检索数据的能力，数据库引入了索引机制。 </p>
@@ -408,59 +796,478 @@
 <p><strong>·理论上讲，一个表最多可以建249 个非聚集索引。</strong></p>
 <p><strong>·非聚集索引不改变表中数据的物理顺序 。</strong></p>
 <h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>假如有用以下命令创建的表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Staff(</span><br><span class="line">	names <span class="type">varchar</span>(<span class="number">100</span>),</span><br><span class="line">	sex <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">check</span>(sex <span class="keyword">in</span>(<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;女&#x27;</span>)),</span><br><span class="line">	id <span class="type">int</span> <span class="keyword">unique</span>,</span><br><span class="line">	salary <span class="type">float</span>,</span><br><span class="line">	insurance <span class="type">float</span>,</span><br><span class="line">	dress <span class="type">varchar</span>(<span class="number">200</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Staff<span class="token punctuation">(</span>
+	names <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	sex <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">check</span><span class="token punctuation">(</span>sex <span class="token operator">in</span><span class="token punctuation">(</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	id <span class="token keyword">int</span> <span class="token keyword">unique</span><span class="token punctuation">,</span>
+	salary <span class="token keyword">float</span><span class="token punctuation">,</span>
+	insurance <span class="token keyword">float</span><span class="token punctuation">,</span>
+	dress <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre></div>
 
-<h4 id="1聚集索引"><a href="#1聚集索引" class="headerlink" title="1聚集索引"></a>1聚集索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">unique</span> clustered index id_Staff <span class="keyword">on</span> Staff(id) <span class="comment">--id_Staff 为索引名</span></span><br></pre></td></tr></table></figure>
+<h4 id="1聚集索引"><a href="#1聚集索引" class="headerlink" title="1聚集索引"></a>1聚集索引</h4><div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">unique</span> <span class="token keyword">clustered</span> <span class="token keyword">index</span> id_Staff <span class="token keyword">on</span> Staff<span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token comment">--id_Staff 为索引名</span></code></pre></div>
 
 <h4 id="2非聚集索引"><a href="#2非聚集索引" class="headerlink" title="2非聚集索引"></a>2非聚集索引</h4><p>由于可以创建多个非聚集索引，且非聚集索引与聚集所以你不冲突，所以可以同时在<code>salary</code> 和<code>insurance</code> 上建立非聚集索引，也可以建立复合索引。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> index salary_staff <span class="keyword">on</span> Staff(salary)</span><br><span class="line"><span class="keyword">create</span> index insurance_staff <span class="keyword">on</span> Staff(insurance)</span><br><span class="line"><span class="keyword">create</span> index saAndins <span class="keyword">on</span> Staff(salary,insurance) <span class="comment">--复合索引</span></span><br></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">index</span> salary_staff <span class="token keyword">on</span> Staff<span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> insurance_staff <span class="token keyword">on</span> Staff<span class="token punctuation">(</span>insurance<span class="token punctuation">)</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> saAndins <span class="token keyword">on</span> Staff<span class="token punctuation">(</span>salary<span class="token punctuation">,</span>insurance<span class="token punctuation">)</span> <span class="token comment">--复合索引</span></code></pre></div>
 
 <p>注意：数据类型为TEXT、NTEXT、IMAGE或BIT的列不能作为索引的列。 由于索引的宽度不能超过900个字节，因此数据类型为CHAR、VARCHAR、BINARY和VARBINARY的列的列宽度超过了900字节，或数据类型为NCHAR、NVARCHAR的列的列宽度超过了450个字节时也不能作为索引的列。</p>
 <blockquote>
 <p><del><code>未完待续...</code></del> <code>完结</code> 下篇请见<a href="/2021/10/14/SQL/SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">SQL 基础语法</a>)</p>
 </blockquote>
-</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>落花生</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://dbin.top/2021/09/27/SQL/SQL%E5%9F%BA%E7%A1%80/" title="SQL services基础">https://dbin.top/2021/09/27/SQL/SQL%E5%9F%BA%E7%A1%80/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/10/02/%E5%BC%80%E5%8F%91/Android/Android/" rel="prev" title="Android学习笔记"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Android学习笔记</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/09/23/others/%E9%9F%B3%E4%B9%90/%E4%B9%9D%E6%9C%88%E7%BD%91%E6%8A%91%E4%BA%91/" rel="next" title="九月网抑云"><span class="post-nav-text">九月网抑云</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 – 2022 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.yunyoujun.cn/" title="网站源码来自"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 落花生</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.2</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
-  setTimeout(blog_live_time, 1000);
-  const start = new Date('2021-06-18T00:00:00');
-  const now = new Date();
-  const timeDiff = (now.getTime() - start.getTime());
-  const msPerMinute = 60 * 1000;
-  const msPerHour = 60 * msPerMinute;
-  const msPerDay = 24 * msPerHour;
-  const passDay = Math.floor(timeDiff / msPerDay);
-  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
-  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
-  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
-  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
-}
-blog_live_time();
-</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#4fcde3" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
-  // Handle and trigger popup window
-  document.querySelector(".popup-trigger").addEventListener("click", () => {
-    document.querySelector(".popup").classList.add("show");
-    setTimeout(() => {
-      document.querySelector(".search-input").focus();
-    }, 100);
-  });
 
-  // Monitor main search box
-  const onPopupClose = () => {
-    document.querySelector(".popup").classList.remove("show");
-  };
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
-  document.querySelector(".popup-btn-close").addEventListener("click", () => {
-    onPopupClose();
-  });
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
 
-  window.addEventListener("keyup", event => {
-    if (event.key === "Escape") {
-      onPopupClose();
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SQL/">#SQL</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SQL services基础</div>
+      <div>https://dbin.top/2021/09/27/SQL/SQL基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>落花生</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月27日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/02/%E5%BC%80%E5%8F%91/Android/Android/" title="Android学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/23/others/%E9%9F%B3%E4%B9%90/%E4%B9%9D%E6%9C%88%E7%BD%91%E6%8A%91%E4%BA%91/" title="九月网抑云">
+                        <span class="hidden-mobile">九月网抑云</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
   });
-});
-</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><script>const date = new Date();
-const today = (date.getMonth() + 1) + "-" + date.getDate()
-const mourn_days = ["4-4","5-12","9-18"]
-if (mourn_days.includes(today)) {
-  document.documentElement.style.filter = "grayscale(1)";
-}</script></div></body></html>
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
