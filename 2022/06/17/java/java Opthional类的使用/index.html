@@ -16,22 +16,22 @@
   <meta name="author" content="落花生">
   <meta name="keywords" content=" ">
   
-    <meta name="description" content="Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。">
+    <meta name="description" content="Optional 类是一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。 Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。 Optional 类的引入很好的解决空指针异常。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 学习">
-<meta property="og:url" content="https://dbin.top/2022/02/10/tool/Git%20%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="java Opthional 类">
+<meta property="og:url" content="https://dbin.top/2022/06/17/java/java%20Opthional%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="唯落花生">
-<meta property="og:description" content="Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。">
+<meta property="og:description" content="Optional 类是一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。 Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。 Optional 类的引入很好的解决空指针异常。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-09T20:36:55.000Z">
-<meta property="article:modified_time" content="2022-06-17T15:23:37.908Z">
+<meta property="article:published_time" content="2022-06-17T02:45:55.000Z">
+<meta property="article:modified_time" content="2022-06-17T15:18:55.074Z">
 <meta property="article:author" content="落花生">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Git 学习 - 唯落花生</title>
+  <title>java Opthional 类 - 唯落花生</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git 学习"></span>
+            <span id="subtitle" data-typed-text="java Opthional 类"></span>
           
         </div>
 
@@ -221,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-02-10 04:36" pubdate>
-          2022年2月10日 凌晨
+        <time datetime="2022-06-17 10:45" pubdate>
+          2022年6月17日 上午
         </time>
       </span>
     
@@ -282,109 +282,138 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Git 学习</h1>
+            <h1 style="display: none">java Opthional 类</h1>
             
             <div class="markdown-body">
               
-              <p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
-<p>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
-<p>Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
+              <p>Optional 类是一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。</p>
+<p>Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。</p>
+<p>Optional 类的引入很好的解决空指针异常。</p>
 <span id="more"></span>
 
-<h2 id="Git仓库得创建-提交"><a href="#Git仓库得创建-提交" class="headerlink" title="Git仓库得创建,提交"></a>Git仓库得创建,提交</h2><h3 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h3><div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git init</code></pre></div>
+<h2 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h2><style>
+    summary::-webkit-details-marker {
+    display: none;
+}
+summary:before {
+    content: "\2714"; /* the new icon */
+    color: #696f7c;
+    margin-right: 5px;
+}             
+</style>
+<details>
+    <summary>主要方法</summary>
+    <table class="reference">
+<tbody><tr>
+<th style="width:10%;">序号</th>
+<th>方法 &amp; 描述</th>
+</tr>
+<tr>
+<td>1</td>
+<td><b>static &lt;T&gt; Optional&lt;T&gt; empty()</b>
+<p>返回空的 Optional 实例。</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>boolean equals(Object obj)</b>
+<p>判断其他对象是否等于 Optional。</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><b>Optional&lt;T&gt; filter(Predicate&lt;? super &lt;T&gt; predicate)</b>
+<p>如果值存在，并且这个值匹配给定的 predicate，返回一个Optional用以描述这个值，否则返回一个空的Optional。</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><b>&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T,Optional&lt;U&gt;&gt; mapper)</b>
+<p>如果值存在，返回基于Optional包含的映射方法的值，否则返回一个空的Optional</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><b>T get()</b>
+<p>如果在这个Optional中包含这个值，返回值，否则抛出异常：NoSuchElementException</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><b>int hashCode()</b>
+<p>返回存在值的哈希码，如果值不存在 返回 0。</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><b>void ifPresent(Consumer&lt;? super T&gt; consumer)</b>
+<p>如果值存在则使用该值调用 consumer , 否则不做任何事情。</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><b>boolean isPresent()</b>
+<p>如果值存在则方法会返回true，否则返回 false。</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><b>&lt;U&gt;Optional&lt;U&gt; map(Function&lt;? super T,? extends U&gt; mapper)</b>
+<p>
+如果有值，则对其执行调用映射函数得到返回值。如果返回值不为 null，则创建包含映射返回值的Optional作为map方法返回值，否则返回空Optional。</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><b>static &lt;T&gt; Optional&lt;T&gt; of(T value)</b>
+<p>返回一个指定非null值的Optional。</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><b>static &lt;T&gt; Optional&lt;T&gt; ofNullable(T value)</b>
+<p>如果为非空，返回 Optional 描述的指定值，否则返回空的 Optional。</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><b>T orElse(T other)</b>
+<p>如果存在该值，返回值， 否则返回 other。</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><b>T orElseGet(Supplier&lt;? extends T&gt; other)</b>
+<p>如果存在该值，返回值， 否则触发 other，并返回  other 调用的结果。</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td><b>&lt;X extends Throwable&gt; T orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</b><p></p>
+<p>如果存在该值，返回包含的值，否则抛出由 Supplier 继承的异常</p></td>
+</tr>
+<tr>
+<td>15</td>
+<td><b>String toString()</b>
+<p>返回一个Optional的非空字符串，用来调试</p></td>
+</tr>
+<tr><td colspan='2'>摘自菜鸟教程</td></tr>
+</tbody></table>
+</details>
 
-<h3 id="添加文件道暂存区"><a href="#添加文件道暂存区" class="headerlink" title="添加文件道暂存区"></a>添加文件道暂存区</h3><p>将<font color="red">工作区</font>的内容提交到<font color="red">暂存区</font></p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git add filename</code></pre></div>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h4 id="判断并执行操作"><a href="#判断并执行操作" class="headerlink" title="判断并执行操作"></a>判断并执行操作</h4><div class="code-wrapper"><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> s <span class="token operator">=</span> <span class="token string">"Hello World"</span><span class="token punctuation">;</span>
+    <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">ofNullable</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ifPresent</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//如果s为空不会有输出</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
 
-<h3 id="提交到本地仓库"><a href="#提交到本地仓库" class="headerlink" title="提交到本地仓库"></a>提交到本地仓库</h3><p>将<font color="red">暂存区</font>的内容提交到<font color="red">本地仓库</font></p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git commit -m <span class="token string">"information"</span></code></pre></div>
+<h4 id="判断并抛出异常"><a href="#判断并抛出异常" class="headerlink" title="判断并抛出异常"></a>判断并抛出异常</h4><div class="code-wrapper"><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> s <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ifPresent</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
 
-<h2 id="版本间得时光穿梭"><a href="#版本间得时光穿梭" class="headerlink" title="版本间得时光穿梭"></a>版本间得时光穿梭</h2><h3 id="查看当前仓库状态"><a href="#查看当前仓库状态" class="headerlink" title="查看当前仓库状态"></a>查看当前仓库状态</h3><div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git status</code></pre></div>
+<h4 id="判空并返回对象"><a href="#判空并返回对象" class="headerlink" title="判空并返回对象"></a>判空并返回对象</h4><div class="code-wrapper"><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> s <span class="token operator">=</span> <span class="token string">"Hello World"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> t <span class="token operator">=</span> <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">ofNullable</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token string">"default"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
 
-<h3 id="查看具体的修改"><a href="#查看具体的修改" class="headerlink" title="查看具体的修改"></a>查看具体的修改</h3><div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git diff</code></pre></div>
+<h4 id="使用-Supplier接口返回对象"><a href="#使用-Supplier接口返回对象" class="headerlink" title="使用 Supplier接口返回对象"></a>使用 Supplier接口返回对象</h4><div class="code-wrapper"><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> s <span class="token operator">=</span> <span class="token string">"Hello World"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> t <span class="token operator">=</span> <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">ofNullable</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">orElseGet</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token string">"Hello World"</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
 
-<h3 id="版本退回"><a href="#版本退回" class="headerlink" title="版本退回"></a>版本退回</h3><h4 id="查看提交日志"><a href="#查看提交日志" class="headerlink" title="查看提交日志"></a>查看提交日志</h4><div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git log</code></pre></div>
-
-<h4 id="回退版本"><a href="#回退版本" class="headerlink" title="回退版本"></a>回退版本</h4><p><font color="blue">一个^表示向历史退一个版本，多个^表示退回多个版本</font></p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git reset --hard Head^</code></pre></div>
-
-<p>当退回版本过多,如100</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git reset --hard~100</code></pre></div>
-
-<p>或者通过 <code>commit id</code>  ”时光穿梭“ 到某个版本</p>
-<p><font color="green">Tips：<code>commit id</code> 不必写全，写一部分即可</font></p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git reset --hard 12345</code></pre></div>
-
-<p>可以通过以下命令查看命令记录从而得到<code>commit id</code></p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git reflog</code></pre></div>
-
-<h4 id="丢弃工作区修改"><a href="#丢弃工作区修改" class="headerlink" title="丢弃工作区修改"></a>丢弃工作区修改</h4><p>一种是<code>filename</code>自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-<p>一种是<code>filename</code>已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git checkout -- filename</code></pre></div>
-
-<p>当当前工作区有文件被删除时，可以使用以下命令删除仓库中的相应文件</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">rm filename</code></pre></div>
-
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h3><h4 id="创建SSH-Key"><a href="#创建SSH-Key" class="headerlink" title="创建SSH Key"></a>创建SSH Key</h4><p>tips:一路回车就好</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">ssh-keygen -t rsa -C <span class="token string">"email@example.com"</span></code></pre></div>
-
-<p>Windows用户就可以在<code>C:\Users\用户名\.ssh</code>目录下找到相关的<code>id_rsa.pub</code> (公匙),和<code>id_rsa</code> (私匙)。</p>
-<h4 id="在远程仓库添加公匙"><a href="#在远程仓库添加公匙" class="headerlink" title="在远程仓库添加公匙"></a>在远程仓库添加公匙</h4><p>登录GitHub、Gitee等，在相关repo中添加公匙即可</p>
-<h4 id="关联远程仓库"><a href="#关联远程仓库" class="headerlink" title="关联远程仓库"></a>关联远程仓库</h4><p>link 可以是远程仓库的https(如：<code>https://gitee.com/User/test.git</code>)，也可以是SSH(如: <code>git@gitee.com:User/test.git</code>)</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git remote add origin link</code></pre></div>
-
-<h3 id="推送内容"><a href="#推送内容" class="headerlink" title="推送内容"></a>推送内容</h3><p>由于远程库是空的，我们第一次推送<code>master</code>分支时，加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送的远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git push -u origin master</code></pre></div>
-
-<p>添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的，但是<code>origin</code>这个名字一看就知道是远程库。</p>
-<p>把本地库的内容推送到远程，用<code>git push</code>命令，实际上是把当前分支<code>master</code>推送到远程。</p>
-<p>从现在起，只要本地作了提交，就可以通过命令：</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git push origin master</code></pre></div>
-
-<h3 id="删除远程库"><a href="#删除远程库" class="headerlink" title="删除远程库"></a>删除远程库</h3><p>如果推送错误，可以通过以下方式删除远程库</p>
-<p>1.查看远程库信息</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git remote -v</code></pre></div>
-
-<p>2.根据名字删除本地仓库与远程仓库的绑定关系</p>
-<div class="code-wrapper"><pre class="language-none"><code class="language-none">git remote rm origin</code></pre></div>
-
-<h3 id="仓库克隆"><a href="#仓库克隆" class="headerlink" title="仓库克隆"></a>仓库克隆</h3><div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git clone link</code></pre></div>
-
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><h4 id="方法一-："><a href="#方法一-：" class="headerlink" title="方法一 ："></a>方法一 ：</h4><p>创建并切换到dev分支</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git branch dev #创建分支
-git checkout dev #切换分支</code></pre></div>
-
-<p>也可以只使用这条命令</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git checkout -b dev</code></pre></div>
-
-<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><p>还可以使用<code>switch</code>创建切换分支，更科学</p>
-<p>创建并切换到dev分支：</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git switch -c dev</code></pre></div>
-
-<p>切换到分支dev：</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git switch dev</code></pre></div>
-
-<p>查看所有分支</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git branch</code></pre></div>
-
-<h3 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h3><p>将指定分支合并到当前分支</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git merge dev</code></pre></div>
-
-<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git branch -d dev</code></pre></div>
-
-<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>当两个分支提交了不同的内容到仓库，然后进行合并时，就会出现：</p>
-<div class="code-wrapper"><pre class="language-none"><code class="language-none">Automatic merge failed; fix conflicts and then commit the result.
-自动合并失败;修复冲突，然后提交结果。</code></pre></div>
-
-<p>此时打开冲突的文件，手动修改后重新提交，就能合并成功。</p>
-<p>使用以下命令就可以查看分支合并情况。</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git log --graph --pretty=oneline --abbrev-commit</code></pre></div>
-
-<h3 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h3><p><code>fast forward</code>合看不出来曾经做过合并,在分支合并时git在可行的情况下会使用<code>fast forward</code> ,删除分支后，会丢掉分支信息。可以强制禁用<code>fast forward</code> ，git就会在merge时生成新的commit，这样分支历史上就可以看出。</p>
-<div class="code-wrapper"><pre class="language-git" data-language="git"><code class="language-git">git merge --no-ff -m <span class="token string">"merge with no-ff"</span> dev</code></pre></div>
-
-<p><code>未完待续</code></p>
-<p><font color="green">学习自：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">https://www.liaoxuefeng.com/wiki/896043488029600</a></font></p>
 
               
             </div>
@@ -402,15 +431,8 @@ git checkout dev #切换分支</code></pre></div>
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  <a href="/categories/Blog/" class="category-chain-item">Blog</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
-  
-  
-
   
 
       </span>
@@ -424,7 +446,7 @@ git checkout dev #切换分支</code></pre></div>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/">#Git</a>
+        <a href="/tags/Java/">#Java</a>
       
     </div>
   
@@ -436,8 +458,8 @@ git checkout dev #切换分支</code></pre></div>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git 学习</div>
-      <div>https://dbin.top/2022/02/10/tool/Git 学习/</div>
+      <div>java Opthional 类</div>
+      <div>https://dbin.top/2022/06/17/java/java Opthional类的使用/</div>
     </div>
     <div class="license-meta">
       
@@ -449,7 +471,7 @@ git checkout dev #切换分支</code></pre></div>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年2月10日</div>
+          <div>2022年6月17日</div>
         </div>
       
       
@@ -479,18 +501,12 @@ git checkout dev #切换分支</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/10/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/Servlet%E5%9F%BA%E7%A1%80/" title="Servlet 基础 学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Servlet 基础 学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/09/python/Python%E5%9F%BA%E7%A1%80/" title="Python 基本数据类型">
-                        <span class="hidden-mobile">Python 基本数据类型</span>
+                      <a href="/2022/06/16/java/Java%20Stream%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Java Stream类的使用">
+                        <span class="hidden-mobile">Java Stream类的使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -501,6 +517,34 @@ git checkout dev #切换分支</code></pre></div>
             </div>
 
             
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline-gamma-navy.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["/waline_emoji/qq/"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":200,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
 
           </article>
         </div>
